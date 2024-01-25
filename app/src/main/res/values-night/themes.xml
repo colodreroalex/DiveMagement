@@ -4,4 +4,10 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/purpleDark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logoo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.DiveMagement</item>
+    </style>
 </resources>

@@ -2,10 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
+    <color name="orange">#FF5722</color>
+    <color name="teal">#009688</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="purple">#8692f7</color>
+    <color name="purpleDark">#5f6af7</color>
+    <color name="purpleLight">#a3aef7</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="lightBlue">#03A9F4</color>
+
 
 </resources>

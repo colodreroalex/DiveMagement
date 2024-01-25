@@ -2,6 +2,7 @@ package com.example.divemagement
 
 
 data class Inmersion(
+
     val id: Int,
     val nombre: String,
     val profundidad: Float,
@@ -13,4 +14,5 @@ data class Inmersion(
     val descripcion: String,
     val photo: String? = null
 ){
+
 }

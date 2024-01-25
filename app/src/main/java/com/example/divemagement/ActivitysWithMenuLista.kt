@@ -1,60 +1,52 @@
 package com.example.divemagement
-
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.divemagement.DB.DbHelper
 
 
-open class ActivityWithMenus: AppCompatActivity() {
+open class ActivitysWithMenuLista: AppCompatActivity() {
+
+    private lateinit var db: DbHelper
+
     companion object{
-        var actividadActual = 0
-        var isLoggedIn = false
+        //var actividadActual = 0
     }
     /* Quitar interrogation? */
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         var inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.menu_lista, menu)
+        db = DbHelper(this)
 
-
-        if(menu != null){
-            for(i in 0 until menu.size()) {
-                if(i == actividadActual) menu.getItem(i).isEnabled = false
-                else menu.getItem(i).isEnabled = true
-            }
-
-
-        }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         return when (item.itemId){
-            R.id.registerActivity -> {
-                val intent = Intent(this, MainActivity::class.java)
+            R.id.añadir -> {
+                val intent = Intent(this, Anadir_inmersion::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                actividadActual = 0
                 startActivity(intent)
-
                 true
             }
-
-            R.id.loginActivity -> {
+            R.id.eliminar -> {
+                val intent = Intent(this, Delete_inmersion::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent)
+                true
+            }
+            R.id.id_salir -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                actividadActual = 1
                 startActivity(intent)
-
                 true
             }
-
-
             else -> super.onOptionsItemSelected(item)
         }
 

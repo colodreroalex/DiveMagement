@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondoapp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
+
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextProfundidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Profundidad"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextFecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha"
+            android:inputType="date"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Hora"
+            android:inputType="time"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextTemperatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Temperatura"
+            android:inputType="numberDecimal"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextVisibilidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Visibilidad"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextLugar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lugar"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <EditText
+            android:id="@+id/editTextPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL de la Foto"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"/>
+
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="italic|bold"/>
+
+        <Button
+            android:id="@+id/salir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salir"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="italic|bold"/>
+
+    </LinearLayout>
+
+</ScrollView>

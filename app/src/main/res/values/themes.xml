@@ -1,9 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.DiveMagement" parent="Theme.MaterialComponents.DayNight">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Theme.DiveMagement" parent="Base.Theme.DiveMagement" />
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/purpleDark</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logoo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.DiveMagement</item>
+    </style>
+
 </resources>

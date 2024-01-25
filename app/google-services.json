@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791825063496",
+    "project_id": "divemanagement-2a94b",
+    "storage_bucket": "divemanagement-2a94b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791825063496:android:0858c921bf3663a7f6027d",
+        "android_client_info": {
+          "package_name": "com.example.divemagement"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMjMBrZWoh9AR6etHhG3JkLpgSvgD-agk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
