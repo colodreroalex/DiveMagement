@@ -89,7 +89,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void addInitialInmersiones(SQLiteDatabase db) {
-        List<Inmersion> inmersionesList = getInmersiones();
+        List<Inmersion> inmersionesList = InmersionesProvider.Companion.getInmersionesList();
 
         // Insertamos las inmersiones iniciales
         if (inmersionesList != null && !inmersionesList.isEmpty()) {

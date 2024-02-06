@@ -57,6 +57,13 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                     )
 
                     dbHelper.insertInmersion(inmersion)
+                    val updatedInmersionesList = dbHelper.getInmersiones()
+
+                    // Update the data set of your RecyclerView's adapter
+                    adapter.updateInmersionesList(updatedInmersionesList)
+
+                    // Notify the adapter that the data set has changed
+                    adapter.notifyDataSetChanged()
 
                     // Realiza las operaciones necesarias y cierra la conexión a la base de datos.
                     dbHelper.close()
