@@ -37,60 +37,70 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
         dbHelper = DbHelper(this)
         val sqlite = dbHelper.writableDatabase
 
+        inizializarGaleria()
+
         binding.buttonGuardar.setOnClickListener {
-            try {
-                val nombre = binding.editTextNombre.text.toString()
-                val profundidad = binding.editTextProfundidad.text.toString().toFloatOrNull()
-                val fecha = binding.editTextFecha.text.toString()
-                val hora = binding.editTextHora.text.toString()
-                val temperatura = binding.editTextTemperatura.text.toString().toFloatOrNull()
-                val visibilidad = binding.editTextVisibilidad.text.toString()
-                val lugar = binding.editTextLugar.text.toString()
-                val descripcion = binding.editTextDescripcion.text.toString()
+            // Crear un AlertDialog
+            AlertDialog.Builder(this)
+                .setTitle("Confirmar")
+                .setMessage("¿Deseas guardar los datos?")
+                .setPositiveButton("Sí") { _, _ ->
+                    try {
+                        val nombre = binding.editTextNombre.text.toString()
+                        val profundidad = binding.editTextProfundidad.text.toString().toFloatOrNull()
+                        val fecha = binding.editTextFecha.text.toString()
+                        val hora = binding.editTextHora.text.toString()
+                        val temperatura = binding.editTextTemperatura.text.toString().toFloatOrNull()
+                        val visibilidad = binding.editTextVisibilidad.text.toString()
+                        val lugar = binding.editTextLugar.text.toString()
+                        val descripcion = binding.editTextDescripcion.text.toString()
 
+                        if (nombre.isNotEmpty() && profundidad != null && temperatura != null) {
+                            val inmersion = Inmersion(
+                                InmersionesProvider.inmersionesList.size + 1,
+                                nombre,
+                                profundidad,
+                                fecha,
+                                hora,
+                                temperatura,
+                                visibilidad,
+                                lugar,
+                                descripcion,
+                                null
+                            )
 
-                if (nombre.isNotEmpty() && profundidad != null && temperatura != null) {
-                    val inmersion = Inmersion(
-                        InmersionesProvider.inmersionesList.size + 1,
-                        nombre,
-                        profundidad,
-                        fecha,
-                        hora,
-                        temperatura,
-                        visibilidad,
-                        lugar,
-                        descripcion,
-                        null
-                    )
+                            dbHelper.insertInmersion(inmersion)
+                            val updatedInmersionesList = dbHelper.getInmersiones()
 
-                    dbHelper.insertInmersion(inmersion)
-                    val updatedInmersionesList = dbHelper.getInmersiones()
+                            // Update the data set of your RecyclerView's adapter
+                            adapter.updateInmersionesList(updatedInmersionesList)
 
-                    // Update the data set of your RecyclerView's adapter
-                    adapter.updateInmersionesList(updatedInmersionesList)
+                            // Notify the adapter that the data set has changed
+                            adapter.notifyDataSetChanged()
 
-                    // Notify the adapter that the data set has changed
-                    adapter.notifyDataSetChanged()
+                            // Realiza las operaciones necesarias y cierra la conexión a la base de datos.
+                            dbHelper.close()
 
-                    // Realiza las operaciones necesarias y cierra la conexión a la base de datos.
-                    dbHelper.close()
+                            // Volver a ListadoActivity.kt
+                            val intent = Intent(this, InmersionesActivity::class.java)
+                            startActivity(intent)
+                            finish()
 
-
-
-                } else {
-                    // Muestra un mensaje de error o realiza alguna acción en caso de datos inválidos.
-                    // Por ejemplo, puedes mostrar un Toast.
-                    Toast.makeText(
-                        this,
-                        "Por favor, ingresa datos válidos para Profundidad y Temperatura",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        } else {
+                            // Muestra un mensaje de error o realiza alguna acción en caso de datos inválidos.
+                            Toast.makeText(
+                                this,
+                                "Por favor, ingresa datos válidos para Profundidad y Temperatura",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    } catch (e: Exception) {
+                        // Maneja cualquier excepción que pueda ocurrir durante el proceso.
+                        e.printStackTrace()
+                    }
                 }
-            } catch (e: Exception) {
-                // Maneja cualquier excepción que pueda ocurrir durante el proceso.
-                e.printStackTrace()
-                // Puedes mostrar un mensaje de error o realizar alguna acción específica aquí.
-            }
+                .setNegativeButton("No", null)
+                .show()
         }
 
 
