@@ -75,7 +75,8 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                     // Realiza las operaciones necesarias y cierra la conexión a la base de datos.
                     dbHelper.close()
 
-                    finish()
+
+
                 } else {
                     // Muestra un mensaje de error o realiza alguna acción en caso de datos inválidos.
                     // Por ejemplo, puedes mostrar un Toast.
@@ -92,6 +93,13 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
             }
         }
 
+
+        binding.salir.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun inizializarGaleria() {
         //Inicializamos el ResultLauncher con el método registerForActivityResult y el contrato ActivityResultContracts.StartActivityForResult
         resultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             //Comprobamos que el resultado sea RESULT_OK
@@ -119,10 +127,6 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
             intent.type = "image/*"
             //Lanzamos el intent con el ResultLauncher
             resultado.launch(intent)
-        }
-
-        binding.salir.setOnClickListener {
-            finish()
         }
     }
 }

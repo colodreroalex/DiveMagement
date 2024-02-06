@@ -15,6 +15,7 @@ data class Inmersion(
     val lugar: String,
     val descripcion: String,
     val photo: ImageButton? = null
+
 ){
 
 }
