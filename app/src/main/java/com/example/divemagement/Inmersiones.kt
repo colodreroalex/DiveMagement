@@ -1,5 +1,7 @@
 package com.example.divemagement
 
+import android.widget.ImageButton
+
 
 data class Inmersion(
 
@@ -12,7 +14,7 @@ data class Inmersion(
     val visibilidad: String,
     val lugar: String,
     val descripcion: String,
-    val photo: String? = null
+    val photo: ImageButton? = null
 ){
 
 }

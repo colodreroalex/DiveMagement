@@ -128,7 +128,7 @@ public class DbHelper extends SQLiteOpenHelper {
                         cursor.getString(6),
                         cursor.getString(7),
                         cursor.getString(8),
-                        cursor.getString(9)
+                        null
                 );
 
                 inmersionesList.add(inmersion);

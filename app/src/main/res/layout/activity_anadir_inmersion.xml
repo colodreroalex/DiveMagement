@@ -88,14 +88,13 @@
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
-        <EditText
-            android:id="@+id/editTextPhoto"
+        <ImageButton
+            android:id="@+id/imagenButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="URL de la Foto"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            android:layout_height="80dp"
+            android:contentDescription="Boton para abrir la galeria"
+            android:scaleType="fitCenter"
+            android:src="@drawable/gallery"/>
 
         <Button
             android:id="@+id/buttonGuardar"

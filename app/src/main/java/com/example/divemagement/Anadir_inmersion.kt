@@ -40,7 +40,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                 val visibilidad = binding.editTextVisibilidad.text.toString()
                 val lugar = binding.editTextLugar.text.toString()
                 val descripcion = binding.editTextDescripcion.text.toString()
-                val urlPhoto = binding.editTextPhoto.text.toString()
+
 
                 if (nombre.isNotEmpty() && profundidad != null && temperatura != null) {
                     val inmersion = Inmersion(
@@ -53,7 +53,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                         visibilidad,
                         lugar,
                         descripcion,
-                        urlPhoto
+                        null
                     )
 
                     dbHelper.insertInmersion(inmersion)
