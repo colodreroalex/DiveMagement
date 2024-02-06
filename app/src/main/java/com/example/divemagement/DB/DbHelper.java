@@ -89,6 +89,8 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void addInitialInmersiones(SQLiteDatabase db) {
+
+        // Obtenemos la lista de inmersiones iniciales del PROVIDER, importante esto!
         List<Inmersion> inmersionesList = InmersionesProvider.Companion.getInmersionesList();
 
         // Insertamos las inmersiones iniciales
@@ -181,22 +183,27 @@ public class DbHelper extends SQLiteOpenHelper {
         }).start();
     }
 
-    public void deleteInmersionPorNombre(String name) {
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void deleteInmersionPorNombre(final String name) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
 
-        // Agrega una declaración de registro antes de la operación de eliminación
-        Log.d("DbHelper", "Intentando eliminar la inmersión con nombre: " + name);
+                // Agrega una declaración de registro antes de la operación de eliminación
+                Log.d("DbHelper", "Intentando eliminar la inmersión con nombre: " + name);
 
-        int rowsDeleted = db.delete(TABLE_INMERSIONES, "nombre = ?", new String[]{name});
+                int rowsDeleted = db.delete(TABLE_INMERSIONES, "nombre = ?", new String[]{name});
 
-        // Agrega una declaración de registro después de la operación de eliminación
-        if (rowsDeleted > 0) {
-            Log.d("DbHelper", "Inmersión eliminada correctamente");
-        } else {
-            Log.d("DbHelper", "No se encontró ninguna inmersión con el nombre: " + name);
-        }
+                // Agrega una declaración de registro después de la operación de eliminación
+                if (rowsDeleted > 0) {
+                    Log.d("DbHelper", "Inmersión eliminada correctamente");
+                } else {
+                    Log.d("DbHelper", "No se encontró ninguna inmersión con el nombre: " + name);
+                }
 
-        db.close();
+                db.close();
+            }
+        }).start();
     }
 
     public boolean existeInmersionOno(String name) {
