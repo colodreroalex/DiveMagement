@@ -40,7 +40,13 @@ class Delete_inmersion : ActivitysWithMenuLista() {
 
                     // Actualiza la lista de inmersiones en el adaptador
                     val inmersionesList: List<Inmersion> = dbHelper.getInmersiones()
+
+                    // inicializar la propiedad adapter antes de acceder a ella
+                    adapter = inmersionesAdapter(inmersionesList)
+                    // Actualiza la lista de inmersiones en el adaptador
                     adapter.updateInmersionesList(inmersionesList)
+
+
                 } else {
                     val builder = AlertDialog.Builder(this)
                     builder.setTitle("Error")

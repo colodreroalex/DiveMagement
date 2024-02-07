@@ -37,6 +37,8 @@ class InmersionesActivity : ActivitysWithMenuLista() {
         //Le pasamos el adapter al recycler
         binding.recycler.adapter = adapter
 
+
+
         //Filtrado de inmersiones por nombre
         binding.idFiltro.addTextChangedListener { text ->
             val filteredList = listaInmersiones.filter { inmersion ->
