@@ -3,58 +3,88 @@ package com.example.divemagement
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.divemagement.DB.DbHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.example.divemagement.DB.DBInmersion
+import com.example.divemagement.DB.ListaInmersiones
+import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityInmersionesBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class InmersionesActivity : ActivitysWithMenuLista() {
     private lateinit var adapter: inmersionesAdapter
-    private lateinit var dbHelper: DbHelper
     private lateinit var binding: ActivityInmersionesBinding
+    private lateinit var inmersiones: MutableList<ListaInmersiones>
+    private lateinit var recyclerView: RecyclerView
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Lista de Inmersiones"
         super.onCreate(savedInstanceState)
         binding = ActivityInmersionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         // Esconder el teclado cuando se inicie la activity de inmersiones
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
-        //Instanciamos de la clase dbHelper
-        dbHelper = DbHelper(this)
+        adapter = inmersionesAdapter(mutableListOf())
+        inmersiones = InmersionesProvider.inmersionesList
 
-        //Obtenemos la lista de inmersiones
-        val listaInmersiones = dbHelper.getInmersiones()
+        getInmersiones()
 
-        //Instanciamos el adapter y le pasamos la lista de inmersiones
-        adapter = inmersionesAdapter(listaInmersiones)
+        adapter.notifyDataSetChanged()
 
-
-        binding.recycler.layoutManager = LinearLayoutManager(this) //Esto es necesario para que se muestre la lista
-
-        //Le pasamos el adapter al recycler
-        binding.recycler.adapter = adapter
 
 
 
         //Filtrado de inmersiones por nombre
         binding.idFiltro.addTextChangedListener { text ->
-            val filteredList = listaInmersiones.filter { inmersion ->
-                inmersion.nombre.contains(text.toString(), ignoreCase = true)
+            val textoFiltro = text.toString()
+            CoroutineScope(Dispatchers.IO).launch {
+                val inmersionesFiltradas = miInmersionApp.database.inmersionesDAO().getAllInmersiones().filter { inmersion ->
+                    inmersion.nombre.contains(textoFiltro, ignoreCase = true)
+                }
+                runOnUiThread {
+                    adapter.updateInmersionesList(inmersionesFiltradas as MutableList<ListaInmersiones>)
+                }
             }
-            adapter.updateInmersionesList(filteredList)
+
         }
 
     }
 
+    fun getInmersiones() {
+        CoroutineScope(Dispatchers.IO).launch {
+            inmersiones = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
+            runOnUiThread {
+                adapter = inmersionesAdapter(inmersiones)
+                recyclerView = binding.recycler
+                recyclerView.layoutManager = LinearLayoutManager(this@InmersionesActivity)
+                recyclerView.adapter = adapter
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        val listaInmersionesActualizada = dbHelper.getInmersiones()
-        adapter.updateInmersionesList(listaInmersionesActualizada)
 
+        CoroutineScope(Dispatchers.IO).launch {
+            val listaInmersionesActualizada = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
+
+            runOnUiThread {
+                adapter.updateInmersionesList(listaInmersionesActualizada)
+            }
+        }
     }
+
+
 
 
 }

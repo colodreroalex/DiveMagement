@@ -1,24 +1,24 @@
 package com.example.divemagement
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.divemagement.DB.DbHelper
+import com.example.divemagement.DB.ListaInmersiones
+import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityAnadirInmersionBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class Anadir_inmersion : ActivitysWithMenuLista() {
 
-    lateinit var dbHelper: DbHelper
+
     private lateinit var binding: ActivityAnadirInmersionBinding
     private lateinit var adapter: inmersionesAdapter
 
@@ -30,105 +30,111 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
         super.onCreate(savedInstanceState)
         binding = ActivityAnadirInmersionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        adapter = inmersionesAdapter(mutableListOf())
         // Esconder el teclado cuando se inicie la activity de inmersiones
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
-
-        dbHelper = DbHelper(this)
-        val sqlite = dbHelper.writableDatabase
 
         inizializarGaleria()
 
         binding.buttonGuardar.setOnClickListener {
-            // Crear un AlertDialog
-            AlertDialog.Builder(this)
-                .setTitle("Confirmar")
-                .setMessage("¿Deseas guardar los datos?")
-                .setPositiveButton("Sí") { _, _ ->
-                    try {
-                        val nombre = binding.editTextNombre.text.toString()
-                        val profundidad = binding.editTextProfundidad.text.toString().toFloatOrNull()
-                        val fecha = binding.editTextFecha.text.toString()
-                        val hora = binding.editTextHora.text.toString()
-                        val temperatura = binding.editTextTemperatura.text.toString().toFloatOrNull()
-                        val visibilidad = binding.editTextVisibilidad.text.toString()
-                        val lugar = binding.editTextLugar.text.toString()
-                        val descripcion = binding.editTextDescripcion.text.toString()
+            if (binding.editTextNombre.text.isNotEmpty() && binding.editTextProfundidad.text.isNotEmpty() && binding.editTextFecha.text.isNotEmpty() && binding.editTextHora.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextTemperatura.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextLugar.text.isNotEmpty() && binding.editTextDescripcion.text.isNotEmpty()) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val inmersion = miInmersionApp.database.inmersionesDAO()
+                        .buscarInmersionPorNombre(binding.editTextNombre.text.toString())
+                    if (inmersion.isEmpty()) {
+                        miInmersionApp.database.inmersionesDAO().insertInmersion(
+                            ListaInmersiones(
+                                nombre = binding.editTextNombre.text.toString(),
+                                profundidad = binding.editTextProfundidad.text.toString().toFloat(),
+                                fecha = binding.editTextFecha.text.toString(),
+                                hora = binding.editTextHora.text.toString(),
+                                visibilidad = binding.editTextVisibilidad.text.toString(),
+                                temperatura = binding.editTextTemperatura.text.toString().toInt()
+                                    .toFloat(),
+                                lugar = binding.editTextLugar.text.toString(),
+                                descripcion = binding.editTextDescripcion.text.toString()
 
-                        if (nombre.isNotEmpty() && profundidad != null && temperatura != null) {
-                            val inmersion = Inmersion(
-                                InmersionesProvider.inmersionesList.size + 1,
-                                nombre,
-                                profundidad,
-                                fecha,
-                                hora,
-                                temperatura,
-                                visibilidad,
-                                lugar,
-                                descripcion,
-                                null
                             )
 
-                            dbHelper.insertInmersion(inmersion)
-                            val updatedInmersionesList = dbHelper.getInmersiones()
-
-                            // Update the data set of your RecyclerView's adapter
-                            adapter.updateInmersionesList(updatedInmersionesList)
-
-                            // Notify the adapter that the data set has changed
-                            adapter.notifyDataSetChanged()
-
-                            // Realiza las operaciones necesarias y cierra la conexión a la base de datos.
-                            dbHelper.close()
-
-                            // Volver a ListadoActivity.kt
-                            val intent = Intent(this, InmersionesActivity::class.java)
-                            startActivity(intent)
-                            finish()
-
-                        } else {
-                            // Muestra un mensaje de error o realiza alguna acción en caso de datos inválidos.
+                        )
+                        runOnUiThread {
+                            clearCampos()
                             Toast.makeText(
-                                this,
-                                "Por favor, ingresa datos válidos para Profundidad y Temperatura",
+                                this@Anadir_inmersion,
+                                "Inmersion insertada",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            actualizarRecyclerView()
+                            adapter.notifyDataSetChanged()
+                        }
+                    } else {
+                        runOnUiThread {
+                            Toast.makeText(
+                                this@Anadir_inmersion,
+                                "Esta inmersion ya está en la base de datos",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-                    } catch (e: Exception) {
-                        // Maneja cualquier excepción que pueda ocurrir durante el proceso.
-                        e.printStackTrace()
                     }
+
                 }
-                .setNegativeButton("No", null)
-                .show()
+            } else {
+                Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
+            }
         }
 
-
         binding.salir.setOnClickListener {
+            adapter.notifyDataSetChanged()
             finish()
         }
     }
 
-    private fun inizializarGaleria() {
-        //Inicializamos el ResultLauncher con el método registerForActivityResult y el contrato ActivityResultContracts.StartActivityForResult
-        resultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            //Comprobamos que el resultado sea RESULT_OK
-            if (result.resultCode == RESULT_OK) {
-                //Recogemos el intent que nos ha devuelto la galeria
-                val data: Intent? = result.data
+    fun actualizarRecyclerView() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val personajes = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
+            runOnUiThread {
+                adapter.updateInmersionesList(personajes)
+            }
+        }
+    }
 
-                //Comprobamos que el intent no sea null
-                if (data != null) {
-                    //Recogemos la uri de la imagen seleccionada
-                    val uri = data.data
-                    //Comprobamos que la uri no sea null
-                    if (uri != null) {
-                        //Mostramos un mensaje con la uri de la imagen seleccionada
-                        Toast.makeText(this, "Imagen seleccionada: $uri", Toast.LENGTH_SHORT).show()
+    fun clearCampos() {
+        binding.editTextNombre.setText("")
+        binding.editTextProfundidad.setText("")
+        binding.editTextFecha.setText("")
+        binding.editTextHora.setText("")
+        binding.editTextTemperatura.setText("")
+        binding.editTextVisibilidad.setText("")
+        binding.editTextLugar.setText("")
+        binding.editTextDescripcion.setText("")
+    }
+
+
+    fun inizializarGaleria() {
+        //Inicializamos el ResultLauncher con el método registerForActivityResult y el contrato ActivityResultContracts.StartActivityForResult
+        resultado =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                //Comprobamos que el resultado sea RESULT_OK
+                if (result.resultCode == RESULT_OK) {
+                    //Recogemos el intent que nos ha devuelto la galeria
+                    val data: Intent? = result.data
+
+                    //Comprobamos que el intent no sea null
+                    if (data != null) {
+                        //Recogemos la uri de la imagen seleccionada
+                        val uri = data.data
+                        //Comprobamos que la uri no sea null
+                        if (uri != null) {
+                            //Mostramos un mensaje con la uri de la imagen seleccionada
+                            Toast.makeText(
+                                this,
+                                "Imagen seleccionada: $uri",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }
-        }
 
         val imagenSeleccionada: ImageButton = binding.imagenButton
         imagenSeleccionada.setOnClickListener {
@@ -139,4 +145,6 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
             resultado.launch(intent)
         }
     }
+
+
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Delete_inmersion"
+    tools:context=".DeleteActivity"
     android:background="@drawable/fondoapp">
 
     <!-- EditText para recoger el nombre de la inmersión -->
@@ -34,7 +34,7 @@
 
     <!-- Botón "Atrás" -->
     <Button
-        android:id="@+id/botonAtras"
+        android:id="@+id/bAtras"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/botonEliminarInmersion"
@@ -45,5 +45,3 @@
         android:layout_marginTop="16dp"/>
 
 </RelativeLayout>
-
-

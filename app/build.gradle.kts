@@ -1,7 +1,10 @@
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -42,6 +45,13 @@ android {
 
 dependencies {
 
+    //Room:
+    kapt ("androidx.room:room-compiler:2.6.0")
+    implementation ("androidx.room:room-runtime:2.6.0")
+    implementation ("androidx.room:room-ktx:2.6.0")
+    //Corrutinas: Librerias para ejecutar cosas en segundo plano (ej:añadir a base de datos)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -57,4 +67,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.10.0")
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.2")
+
+
 }

@@ -5,23 +5,23 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.divemagement.DB.DbHelper
+import com.example.divemagement.DB.DBInmersion
 
 
 open class ActivitysWithMenuLista: AppCompatActivity() {
 
-    private lateinit var db: DbHelper
+
 
     companion object{
         //var actividadActual = 0
     }
-    /* Quitar interrogation? */
+
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         var inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_lista, menu)
-        db = DbHelper(this)
+
 
         return true
     }
@@ -36,7 +36,13 @@ open class ActivitysWithMenuLista: AppCompatActivity() {
                 true
             }
             R.id.eliminar -> {
-                val intent = Intent(this, Delete_inmersion::class.java)
+                val intent = Intent(this, DeleteActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent)
+                true
+            }
+            R.id.actualizar -> {
+                val intent = Intent(this, UpdateInmersion::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(intent)
                 true

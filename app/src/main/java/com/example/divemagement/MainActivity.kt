@@ -1,27 +1,27 @@
 package com.example.divemagement
 
 import android.content.Intent
-import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.EditText
-import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.divemagement.DB.DbHelper
-import com.example.divemagement.databinding.ActivityLoginBinding
+import com.example.divemagement.DB.DBInmersion
+import com.example.divemagement.DB.ListaClientes
+import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : ActivityWithMenus() {
 
 
-    private lateinit var dbHelper: DbHelper
+
     private lateinit var tbUsernameLogin: EditText
     private lateinit var email: EditText
     private lateinit var pass: EditText
     private lateinit var phone: EditText
     lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Sign Up"
@@ -34,7 +34,8 @@ class MainActivity : ActivityWithMenus() {
 
         ActivityWithMenus.actividadActual = 0
 
-        dbHelper = DbHelper(this)
+
+
 
         tbUsernameLogin = binding.tbUsernameLogin
         email = binding.email
@@ -48,10 +49,7 @@ class MainActivity : ActivityWithMenus() {
 
         ActivityWithMenus.isLoggedIn = false // Usuario no logeado
 
-        //Comprobar que la bbdd no sea null
-        if (dbHelper == null) {
-            Toast.makeText(this, "ERROR AL CREAR LA BASE DE DATOS", Toast.LENGTH_SHORT).show()
-        }
+
 
         binding.bRegister.setOnClickListener {
             val username = binding.tbUsernameLogin.text.toString()
@@ -86,7 +84,14 @@ class MainActivity : ActivityWithMenus() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
                         // Insertar al cliente en la base de datos SQLite
-                        dbHelper.addClient(username, password, tlf, correo)
+                        miInmersionApp.database.clientesDAO().insertCliente(
+                            ListaClientes(
+                                username = username,
+                                password = password,
+                                telefono = tlf,
+                                email = correo
+                            )
+                        )
                     }
                     else{
                         Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT)

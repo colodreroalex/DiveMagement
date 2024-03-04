@@ -1,20 +1,21 @@
 package com.example.divemagement
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.divemagement.DB.DbHelper
+import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityLoginBinding
-import com.example.divemagement.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginActivity : ActivityWithMenus() {
 
-    private lateinit var dbHelper: DbHelper
+
     private lateinit var email: EditText
     private lateinit var tbPasswordLogin: EditText
     public lateinit var binding: ActivityLoginBinding
@@ -30,7 +31,7 @@ class LoginActivity : ActivityWithMenus() {
 
         ActivityWithMenus.actividadActual = 1
 
-        dbHelper = DbHelper(this)
+        val inmersiones = InmersionesProvider.inmersionesList
 
         email = binding.email
         tbPasswordLogin = binding.tbPasswordLogin
@@ -43,6 +44,15 @@ class LoginActivity : ActivityWithMenus() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        CoroutineScope(Dispatchers.IO).launch{
+            val inmersionesDao = miInmersionApp.database.inmersionesDAO()
+            for (inmersion in inmersiones){
+                inmersionesDao.insertInmersion(inmersion)
+            }
+        }
+
+
     }
 
     override fun onPause() {

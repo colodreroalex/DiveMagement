@@ -9,6 +9,9 @@
         android:id="@+id/eliminar"
         android:title="Eliminar inmersión" />
     <item
+        android:id="@+id/actualizar"
+        android:title="Actualizar inmersión" />
+    <item
         android:id="@+id/id_salir"
         android:title="Salir" />
 </menu>

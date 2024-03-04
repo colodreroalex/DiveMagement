@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".UpdateInmersion"
+    android:background="@drawable/fondoapp">
+
+    <!-- EditText para recoger el nombre de la inmersión -->
+    <EditText
+        android:id="@+id/editTextNombreInmersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de la inmersión a actualizar"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textStyle="bold|italic" />
+
+    <!-- EditText para actualizar la profundidad -->
+    <EditText
+        android:id="@+id/editTextProfundidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nueva profundidad"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textStyle="bold|italic"
+        android:layout_below="@id/editTextNombreInmersion"
+        android:layout_marginTop="20dp"/>
+
+    <!-- EditText para actualizar la temperatura -->
+    <EditText
+        android:id="@+id/editTextTemperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nueva temperatura"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textStyle="bold|italic"
+        android:layout_below="@id/editTextProfundidad"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Botón para actualizar la inmersión -->
+    <Button
+        android:id="@+id/botonActualizarInmersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Inmersión"
+        android:layout_marginTop="20dp"
+        android:background="@color/lightBlue"
+        android:layout_below="@id/editTextTemperatura"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="italic|bold"/>
+
+    <!-- Botón "Atrás" -->
+    <Button
+        android:id="@+id/bAtras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonActualizarInmersion"
+        android:text="Atrás"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="italic|bold"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>
+

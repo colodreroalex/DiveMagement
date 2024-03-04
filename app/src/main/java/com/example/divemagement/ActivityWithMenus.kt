@@ -44,7 +44,6 @@ open class ActivityWithMenus: AppCompatActivity() {
 
                 true
             }
-
             R.id.loginActivity -> {
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -53,6 +52,7 @@ open class ActivityWithMenus: AppCompatActivity() {
 
                 true
             }
+
 
 
             else -> super.onOptionsItemSelected(item)
