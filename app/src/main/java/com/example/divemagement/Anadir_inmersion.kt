@@ -34,7 +34,12 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
         // Esconder el teclado cuando se inicie la activity de inmersiones
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
-        inizializarGaleria()
+        inicializarGaleria()
+
+        binding.imagenButton.setOnClickListener {
+            abrirGaleria()
+        }
+
 
         binding.buttonGuardar.setOnClickListener {
             if (binding.editTextNombre.text.isNotEmpty() && binding.editTextProfundidad.text.isNotEmpty() && binding.editTextFecha.text.isNotEmpty() && binding.editTextHora.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextTemperatura.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextLugar.text.isNotEmpty() && binding.editTextDescripcion.text.isNotEmpty()) {
@@ -111,41 +116,28 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
     }
 
 
-    fun inizializarGaleria() {
-        //Inicializamos el ResultLauncher con el método registerForActivityResult y el contrato ActivityResultContracts.StartActivityForResult
-        resultado =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                //Comprobamos que el resultado sea RESULT_OK
-                if (result.resultCode == RESULT_OK) {
-                    //Recogemos el intent que nos ha devuelto la galeria
-                    val data: Intent? = result.data
-
-                    //Comprobamos que el intent no sea null
-                    if (data != null) {
-                        //Recogemos la uri de la imagen seleccionada
-                        val uri = data.data
-                        //Comprobamos que la uri no sea null
-                        if (uri != null) {
-                            //Mostramos un mensaje con la uri de la imagen seleccionada
-                            Toast.makeText(
-                                this,
-                                "Imagen seleccionada: $uri",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+    // Inicializa el ActivityResultLauncher
+    fun inicializarGaleria() {
+        resultado = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val data: Intent? = result.data
+                if (data != null) {
+                    val uri = data.data
+                    if (uri != null) {
+                        binding.imagenButton.setImageURI(uri) // Actualiza directamente el ImageButton con la imagen seleccionada
                     }
                 }
             }
-
-        val imagenSeleccionada: ImageButton = binding.imagenButton
-        imagenSeleccionada.setOnClickListener {
-            //Creamos un intent para abrir la galeria
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            //Lanzamos el intent con el ResultLauncher
-            resultado.launch(intent)
         }
     }
+
+    // Lanza la intención para abrir la galería
+    fun abrirGaleria() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        resultado.launch(intent)
+    }
+
 
 
 }
