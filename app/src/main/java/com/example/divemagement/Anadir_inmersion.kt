@@ -66,6 +66,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                             ).show()
                             actualizarRecyclerView()
                             adapter.notifyDataSetChanged()
+                            finish()
                         }
                     } else {
                         runOnUiThread {

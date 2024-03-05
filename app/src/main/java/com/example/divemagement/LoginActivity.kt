@@ -45,12 +45,12 @@ class LoginActivity : ActivityWithMenus() {
             startActivity(intent)
         }
 
-        CoroutineScope(Dispatchers.IO).launch{
+        /*CoroutineScope(Dispatchers.IO).launch{
             val inmersionesDao = miInmersionApp.database.inmersionesDAO()
             for (inmersion in inmersiones){
                 inmersionesDao.insertInmersion(inmersion)
             }
-        }
+        }*/
 
 
     }

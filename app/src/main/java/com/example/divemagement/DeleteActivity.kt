@@ -56,7 +56,8 @@ class DeleteActivity : ActivitysWithMenuLista() {
                         Toast.LENGTH_SHORT
                     ).show()
                     actualizarRecyclerView()
-
+                    adapter.notifyDataSetChanged()
+                    finish()
                 }
             } else {
                 runOnUiThread {
