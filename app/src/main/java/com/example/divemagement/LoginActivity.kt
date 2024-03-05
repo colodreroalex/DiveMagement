@@ -45,12 +45,18 @@ class LoginActivity : ActivityWithMenus() {
             startActivity(intent)
         }
 
-        /*CoroutineScope(Dispatchers.IO).launch{
+        CoroutineScope(Dispatchers.IO).launch {
             val inmersionesDao = miInmersionApp.database.inmersionesDAO()
-            for (inmersion in inmersiones){
-                inmersionesDao.insertInmersion(inmersion)
+            inmersiones.forEach { inmersion ->
+                // Ahora buscarInmersionPorNombre retorna un solo objeto o null
+                val existente = inmersionesDao.buscarInmersionPorNombreLista(inmersion.nombre)
+                if (existente == null) {
+                    // Si no existe, insertamos la inmersión
+                    inmersionesDao.insertInmersion(inmersion)
+                }
             }
-        }*/
+        }
+
 
 
     }

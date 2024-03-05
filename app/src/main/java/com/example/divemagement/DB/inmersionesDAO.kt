@@ -15,6 +15,10 @@ interface inmersionesDAO {
     @Query("SELECT * FROM t_inmersiones WHERE nombre LIKE :nombre")
     fun buscarInmersionPorNombre(nombre: String): MutableList<ListaInmersiones>
 
+    @Query("SELECT * FROM t_inmersiones WHERE nombre LIKE :nombre LIMIT 1")
+    fun buscarInmersionPorNombreLista(nombre: String): ListaInmersiones?
+
+
 
     //Añadir inmersion
     @Insert
