@@ -2,6 +2,7 @@ package com.example.divemagement
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : ActivityWithMenus() {
 
@@ -69,48 +71,46 @@ class LoginActivity : ActivityWithMenus() {
 
 
     //Metodo para logear con FireBase al Admin - probisional
-    private fun login(){
+    private fun login() {
+        val email = binding.email.text.toString().trim()
+        val password = binding.tbPasswordLogin.text.toString().trim()
 
-        val email = binding.email.text.toString()
-        val password = binding.tbPasswordLogin.text.toString()
-
-
-        if(email.isNotEmpty() && password.isNotEmpty()){
-
-            if(email == "admin@admin.com" && password == "adminadmin"){
-
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(
-                    binding.email.text.toString(),
-                    binding.tbPasswordLogin.text.toString()
-                ).addOnCompleteListener{
-                    //Si la autenticacion tuvo exito
-                    if(it.isSuccessful){
-                        //Abrir la actividad de inmersiones
-                        val intent = Intent(this, InmersionesActivity::class.java)
-                        startActivity(intent)
-                        ActivityWithMenus.isLoggedIn = true // Usuario logeado
-                    }else{ //Si la autenticacion no tuvo exito
-                        Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Determina el rol basado en las credenciales; esto es solo un ejemplo.
+                    val rol = if (email == "admin@admin.com" && password == "adminadmin") "ADMIN" else "USER"
+                    Log.d("LoginActivity", "Rol: $rol")
+                    // Actualiza el rol en la base de datos local de forma asíncrona.
+                    CoroutineScope(Dispatchers.IO).launch {
+                        miInmersionApp.database.clientesDAO().asignarRol(email, password, rol)
+                        withContext(Dispatchers.Main) {
+                            // Una vez actualizado el rol, procede según el rol asignado.
+                            if (rol == "ADMIN") {
+                                val intent = Intent(this@LoginActivity, InmersionesActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(this@LoginActivity, ClientesActivity::class.java)
+                                startActivity(intent)
+                            }
+                            ActivityWithMenus.isLoggedIn = true // Usuario logeado
+                        }
                     }
+                } else {
+                    // Manejo de error en caso de que la autenticación falle.
+                    Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
                 }
             }
-            else{
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Error")
-                builder.setMessage("¡Debes ser ADMIN para entrar!")
-                builder.setPositiveButton("Aceptar", null)
-                val dialog: AlertDialog = builder.create()
-                dialog.show()
-
-                //Limpiar los campos
-                binding.email.text.clear()
-                binding.tbPasswordLogin.text.clear()
-            }
-
-        }else{
+        } else {
             Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
         }
+    }
 
+
+    //Metodo para limpiar los campos
+    private fun limpiarCampos(){
+        email.text.clear()
+        tbPasswordLogin.text.clear()
     }
 
 }

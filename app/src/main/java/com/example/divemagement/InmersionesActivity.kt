@@ -42,8 +42,6 @@ class InmersionesActivity : ActivitysWithMenuLista() {
         adapter.notifyDataSetChanged()
 
 
-
-
         //Filtrado de inmersiones por nombre
         binding.idFiltro.addTextChangedListener { text ->
             val textoFiltro = text.toString()
