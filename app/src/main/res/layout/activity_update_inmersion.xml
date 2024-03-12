@@ -16,7 +16,8 @@
         android:hint="Nombre de la inmersión a actualizar"
         android:inputType="text"
         android:padding="12dp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:textColor="@color/black"/>
 
     <!-- EditText para actualizar la profundidad -->
     <EditText
@@ -28,7 +29,8 @@
         android:padding="12dp"
         android:textStyle="bold|italic"
         android:layout_below="@id/editTextNombreInmersion"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
     <!-- EditText para actualizar la temperatura -->
     <EditText
@@ -40,7 +42,8 @@
         android:padding="12dp"
         android:textStyle="bold|italic"
         android:layout_below="@id/editTextProfundidad"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
     <!-- Botón para actualizar la inmersión -->
     <Button
@@ -51,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/lightBlue"
         android:layout_below="@id/editTextTemperatura"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"/>
 
@@ -62,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/botonActualizarInmersion"
         android:text="Atrás"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"
         android:layout_marginTop="16dp"/>

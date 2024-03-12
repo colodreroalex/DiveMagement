@@ -8,8 +8,10 @@ import androidx.room.Update
 @Dao
 interface clientesDAO {
 
+        //Obtener todos los clientes
         @Query("SELECT * FROM t_clientes")
         fun getAllClientes(): MutableList<ListaClientes>
+
 
         @Query("SELECT * FROM t_clientes WHERE username = :username")
         fun buscarClientePorNombre(username: String): ListaClientes

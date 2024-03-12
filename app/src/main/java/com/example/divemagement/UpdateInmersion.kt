@@ -1,5 +1,6 @@
 package com.example.divemagement
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -35,7 +36,7 @@ class UpdateInmersion : ActivitysWithMenuLista() {
         }
 
         binding.bAtras.setOnClickListener {
-            finish()
+            volverListadoInmersiones()
         }
     }
 
@@ -52,7 +53,7 @@ class UpdateInmersion : ActivitysWithMenuLista() {
                     Toast.makeText(this@UpdateInmersion, "Inmersion actualizada correctamente", Toast.LENGTH_SHORT).show()
                     actualizarRecyclerView()
                     adapter.notifyDataSetChanged()
-                    finish()
+                    volverListadoInmersiones()
                 }
             } else {
                 runOnUiThread {
@@ -74,5 +75,10 @@ class UpdateInmersion : ActivitysWithMenuLista() {
         binding.editTextNombreInmersion.setText("")
         binding.editTextProfundidad.setText("")
 
+    }
+
+    fun volverListadoInmersiones(){
+        val intent = Intent(this, InmersionesActivity::class.java)
+        startActivity(intent)
     }
 }

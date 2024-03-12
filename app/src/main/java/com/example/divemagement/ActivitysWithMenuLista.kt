@@ -17,7 +17,7 @@ open class ActivitysWithMenuLista: AppCompatActivity() {
     }
 
 
-    @SuppressLint("SuspiciousIndentation")
+    //@SuppressLint("SuspiciousIndentation")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         var inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_lista, menu)

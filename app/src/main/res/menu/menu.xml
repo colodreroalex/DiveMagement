@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/registerActivity"
-        android:title="Register" />
+        android:title="@string/registerUser"
+        android:icon="@drawable/registerusericon"/>
     <item
         android:id="@+id/loginActivity"
-        android:title="Login" />
+        android:title="@string/loginUser"
+        android:icon="@drawable/loginusericon"/>
 </menu>

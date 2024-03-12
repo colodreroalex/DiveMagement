@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="10dp"
     android:layout_marginHorizontal="14dp"
     android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="@color/purple">
+    app:cardBackgroundColor="@color/purple"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp">
 
     <RelativeLayout
+        android:id="@+id/relativeCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp">
@@ -26,7 +27,7 @@
 
         <!-- TextView para el nombre de la inmersión -->
         <TextView
-            android:id="@+id/cardViewTitle"
+            android:id="@+id/titulo"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
@@ -34,56 +35,55 @@
             android:text="Nombre de la Inmersión"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <!-- TextView para la profundidad -->
         <TextView
-            android:id="@+id/cardViewDepthLabel"
+            android:id="@+id/profundidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardViewTitle"
+            android:layout_below="@+id/titulo"
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@+id/cardViewImage"
             android:text="Profundidad:"
             android:textColor="@color/white"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <TextView
-            android:id="@+id/cardViewProfundidad"
+            android:id="@+id/numProfundidad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardViewTitle"
+            android:layout_below="@+id/titulo"
             android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/cardViewDepthLabel"
+            android:layout_toRightOf="@+id/profundidad"
             android:text=""
             android:textColor="@color/white"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <!-- TextView para la temperatura -->
         <TextView
-            android:id="@+id/cardViewTempLabel"
+            android:id="@+id/temperatura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardViewTitle"
+            android:layout_below="@+id/titulo"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            android:layout_toRightOf="@+id/cardViewProfundidad"
+            android:layout_toRightOf="@+id/numProfundidad"
             android:text="Temperatura:"
             android:textColor="@color/white"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <TextView
-            android:id="@+id/cardViewTemperatura"
+            android:id="@+id/temperaturaNum"
             android:layout_width="18dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardViewTitle"
+            android:layout_below="@+id/titulo"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="0dp"
-            android:layout_toRightOf="@+id/cardViewTempLabel"
+            android:layout_toRightOf="@+id/temperatura"
             android:text=""
             android:textColor="@color/white"
-            android:textStyle="italic|bold"/>
-
+            android:textStyle="italic|bold" />
 
 
     </RelativeLayout>

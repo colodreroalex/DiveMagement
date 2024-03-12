@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">DiveMagement</string>
+    <string name="titulo_barra">Opciones del cliente</string>
+    <string name="añadir">Añadir inmersión</string>
+    <string name="eliminar">Eliminar inmersión</string>
+    <string name="actualizar">Actualizar inmersión</string>
+    <string name="id_salir">Salir</string>
+    <string name="perfil">Mi perfil</string>
+    <string name="historial">Ver historial</string>
+    <string name="cierraSesion">Cerrar Sesion</string>
+    <string name="registerUser">Register</string>
+    <string name="loginUser">Login</string>
+    <string name="open">Open Drawer</string>
+    <string name="close">Close Drawer</string>
 </resources>

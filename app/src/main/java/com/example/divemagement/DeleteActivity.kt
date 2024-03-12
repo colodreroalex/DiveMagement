@@ -1,5 +1,6 @@
 package com.example.divemagement
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -35,8 +36,13 @@ class DeleteActivity : ActivitysWithMenuLista() {
         }
 
         binding.bAtras.setOnClickListener {
-            finish()
+            volverListadoInmersiones()
         }
+    }
+
+    fun volverListadoInmersiones(){
+        val intent = Intent(this, InmersionesActivity::class.java)
+        startActivity(intent)
     }
 
 
@@ -57,7 +63,7 @@ class DeleteActivity : ActivitysWithMenuLista() {
                     ).show()
                     actualizarRecyclerView()
                     adapter.notifyDataSetChanged()
-                    finish()
+                    volverListadoInmersiones()
                 }
             } else {
                 runOnUiThread {

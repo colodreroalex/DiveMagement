@@ -3,7 +3,6 @@ package com.example.divemagement
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -63,7 +62,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
 
                         )
                         runOnUiThread {
-                            clearCampos()
+                            limpiarCampos()
                             Toast.makeText(
                                 this@Anadir_inmersion,
                                 "Inmersion insertada",
@@ -71,7 +70,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
                             ).show()
                             actualizarRecyclerView()
                             adapter.notifyDataSetChanged()
-                            finish()
+                            volverListadoInmersiones()
                         }
                     } else {
                         runOnUiThread {
@@ -91,20 +90,26 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
 
         binding.salir.setOnClickListener {
             adapter.notifyDataSetChanged()
-            finish()
+            //finish()
+            volverListadoInmersiones()
         }
     }
 
     fun actualizarRecyclerView() {
         CoroutineScope(Dispatchers.IO).launch {
-            val personajes = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
+            val inmersiones = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
             runOnUiThread {
-                adapter.updateInmersionesList(personajes)
+                adapter.updateInmersionesList(inmersiones)
             }
         }
     }
 
-    fun clearCampos() {
+    fun volverListadoInmersiones(){
+        val intent = Intent(this, InmersionesActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun limpiarCampos() {
         binding.editTextNombre.setText("")
         binding.editTextProfundidad.setText("")
         binding.editTextFecha.setText("")
@@ -131,7 +136,7 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
         }
     }
 
-    // Lanza la intención para abrir la galería
+    // Lanza el intent para abrir la galería
     fun abrirGaleria() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"

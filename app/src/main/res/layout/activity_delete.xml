@@ -13,8 +13,8 @@
         android:id="@+id/editTextNombreInmersion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:hint="Nombre de la inmersión a eliminar"
+        android:textColor="@color/black"
         android:inputType="text"
         android:padding="12dp"
         android:textStyle="bold|italic" />
@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/lightBlue"
         android:layout_below="@id/editTextNombreInmersion"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"/>
 
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/botonEliminarInmersion"
         android:text="Atrás"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"
         android:layout_marginTop="16dp"/>

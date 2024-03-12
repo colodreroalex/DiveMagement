@@ -9,6 +9,8 @@ import com.example.divemagement.R
 class inmersionesAdapter(private var inmersionesList: MutableList<ListaInmersiones>) :
     RecyclerView.Adapter<inmersionesViewHolder>() {
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): inmersionesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return inmersionesViewHolder(
@@ -19,6 +21,7 @@ class inmersionesAdapter(private var inmersionesList: MutableList<ListaInmersion
             )
         )
     }
+
     override fun getItemCount(): Int {
         return inmersionesList.size
     }
@@ -26,6 +29,7 @@ class inmersionesAdapter(private var inmersionesList: MutableList<ListaInmersion
     override fun onBindViewHolder(holder: inmersionesViewHolder, position: Int) {
         val item = inmersionesList[position]
         holder.render(item)
+
     }
 
     fun updateInmersionesList(newInmersionesList: MutableList<ListaInmersiones>) {

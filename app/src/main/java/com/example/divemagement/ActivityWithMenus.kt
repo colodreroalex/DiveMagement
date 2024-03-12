@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 open class ActivityWithMenus: AppCompatActivity() {
+
+
+
     companion object{
         var actividadActual = 0
         var isLoggedIn = false

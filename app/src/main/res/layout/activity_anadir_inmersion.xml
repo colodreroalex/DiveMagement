@@ -17,9 +17,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            android:textStyle="italic|bold" />
 
         <EditText
             android:id="@+id/editTextProfundidad"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="Profundidad"
             android:inputType="numberDecimal"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="Fecha"
             android:inputType="date"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="Hora"
             android:inputType="time"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:hint="Temperatura"
             android:inputType="numberDecimal"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Visibilidad"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Lugar"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Descripción"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="italic|bold"/>
 
@@ -93,15 +93,15 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:contentDescription="Boton para abrir la galeria"
-            android:scaleType="fitCenter"
-            android:src="@drawable/gallery"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/gallery" />
 
         <Button
             android:id="@+id/buttonGuardar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guardar"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="italic|bold"/>
 
@@ -110,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Salir"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="italic|bold"/>
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+
+        <item android:id="@+id/perfil"
+            android:title="@string/perfil"
+            android:icon="@drawable/perfil"/>
+
+        <item android:id="@+id/historial"
+            android:title="@string/historial"
+            android:icon="@drawable/icon_historial"/>
+
+        <item android:id="@+id/cierraSesion"
+            android:title="@string/cierraSesion"
+            android:icon="@drawable/icon_cerrarsesion"/>
+
+    </group>
+</menu>

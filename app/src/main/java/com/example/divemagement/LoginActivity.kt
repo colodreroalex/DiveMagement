@@ -75,10 +75,11 @@ class LoginActivity : ActivityWithMenus() {
         val email = binding.email.text.toString().trim()
         val password = binding.tbPasswordLogin.text.toString().trim()
 
+
         if (email.isNotEmpty() && password.isNotEmpty()) {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Determina el rol basado en las credenciales; esto es solo un ejemplo.
+                    // Determina el rol basado en las credenciales
                     val rol = if (email == "admin@admin.com" && password == "adminadmin") "ADMIN" else "USER"
                     Log.d("LoginActivity", "Rol: $rol")
                     // Actualiza el rol en la base de datos local de forma asíncrona.
