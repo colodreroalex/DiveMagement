@@ -1,12 +1,14 @@
-package com.example.divemagement
+package com.example.divemagement.ActivitysClientes
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 
 import androidx.core.widget.addTextChangedListener
 import androidx.drawerlayout.widget.DrawerLayout
@@ -14,6 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
+import com.example.divemagement.InmersionesActivity
+import com.example.divemagement.InmersionesProvider
+import com.example.divemagement.LoginActivity
+import com.example.divemagement.R
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
@@ -64,7 +70,7 @@ class ClientesActivity : AppCompatActivity() {
         }
 
         //Configuración del toolbar
-        toolbar = findViewById(R.id.toolbar)
+        toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
 
         //Configuración del drawerLayout y navigationView
@@ -87,7 +93,7 @@ class ClientesActivity : AppCompatActivity() {
                     startActivity(Intent(this, ClientesActivity::class.java))
                 }
                 R.id.cierraSesion -> {
-                    startActivity(Intent(this, EstadisticasActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                 }
             }
             drawerLayout.closeDrawers()
@@ -95,7 +101,26 @@ class ClientesActivity : AppCompatActivity() {
         }
 
 
+        // Manejo personalizado del botón de retroceso
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Si el Drawer está abierto, ciérralo
+                if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                    // Si el Drawer no está abierto, permite que el comportamiento predeterminado se maneje
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        }
+
+        // Registra el callback en el OnBackPressedDispatcher
+        onBackPressedDispatcher.addCallback(this, callback)
+
     }
+
+
 
     fun getInmersiones() {
         CoroutineScope(Dispatchers.IO).launch {

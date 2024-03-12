@@ -17,7 +17,7 @@
         android:theme="@style/Base.Theme.DiveMagement"
         tools:targetApi="31">
         <activity
-            android:name=".ClientesActivity"
+            android:name=".ActivitysClientes.ClientesActivity"
             android:exported="false" />
         <activity
             android:name=".UpdateInmersion"

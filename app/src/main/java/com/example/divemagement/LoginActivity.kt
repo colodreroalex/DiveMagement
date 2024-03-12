@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.example.divemagement.ActivitysClientes.ClientesActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
