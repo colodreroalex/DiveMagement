@@ -1,4 +1,4 @@
-package com.example.divemagement
+package com.example.divemagement.ActivitysInmersiones
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.divemagement.ActivitysWithMenuLista
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter

@@ -1,21 +1,19 @@
-package com.example.divemagement
+package com.example.divemagement.ActivitysInmersiones
 
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.divemagement.DB.DBInmersion
+import com.example.divemagement.ActivitysWithMenuLista
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
+import com.example.divemagement.InmersionesProvider
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityInmersionesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class InmersionesActivity : ActivitysWithMenuLista() {
     private lateinit var adapter: inmersionesAdapter

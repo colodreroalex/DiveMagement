@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
-import com.example.divemagement.InmersionesActivity
+import com.example.divemagement.ActivitysInmersiones.InmersionesActivity
 import com.example.divemagement.InmersionesProvider
 import com.example.divemagement.LoginActivity
 import com.example.divemagement.R
@@ -69,6 +69,14 @@ class ClientesActivity : AppCompatActivity() {
 
         }
 
+        //Metodo que configura el toolbar
+        configuracionToolBar()
+
+    }
+
+
+    fun configuracionToolBar(){
+
         //Configuración del toolbar
         toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -83,11 +91,13 @@ class ClientesActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toggle.syncState()
 
+
         // Configuración del NavigationView para manejar los clics en los elementos del menú
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.perfil -> {
-                    startActivity(Intent(this, InmersionesActivity::class.java))
+                    startActivity(Intent(this, ActivityPerfilCliente::class.java))
+
                 }
                 R.id.historial -> {
                     startActivity(Intent(this, ClientesActivity::class.java))
@@ -117,10 +127,7 @@ class ClientesActivity : AppCompatActivity() {
 
         // Registra el callback en el OnBackPressedDispatcher
         onBackPressedDispatcher.addCallback(this, callback)
-
     }
-
-
 
     fun getInmersiones() {
         CoroutineScope(Dispatchers.IO).launch {

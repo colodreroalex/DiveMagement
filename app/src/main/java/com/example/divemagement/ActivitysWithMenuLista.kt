@@ -1,11 +1,12 @@
 package com.example.divemagement
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.divemagement.DB.DBInmersion
+import com.example.divemagement.ActivitysInmersiones.Anadir_inmersion
+import com.example.divemagement.ActivitysInmersiones.DeleteActivity
+import com.example.divemagement.ActivitysInmersiones.UpdateInmersion
 
 
 open class ActivitysWithMenuLista: AppCompatActivity() {

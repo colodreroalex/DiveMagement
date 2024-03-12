@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import com.example.divemagement.ActivitysClientes.ClientesActivity
+import com.example.divemagement.ActivitysInmersiones.InmersionesActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -79,6 +80,9 @@ class LoginActivity : ActivityWithMenus() {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    // Guarda el email en las preferencias compartidas
+                    val sharedPreferences = getSharedPreferences("AppPreferences", MODE_PRIVATE)
+                    sharedPreferences.edit().putString("user_email", email).apply()
                     // Determina el rol basado en las credenciales
                     val rol = if (email == "admin@admin.com" && password == "adminadmin") "ADMIN" else "USER"
                     Log.d("LoginActivity", "Rol: $rol")
@@ -86,14 +90,17 @@ class LoginActivity : ActivityWithMenus() {
                     CoroutineScope(Dispatchers.IO).launch {
                         miInmersionApp.database.clientesDAO().asignarRol(email, password, rol)
                         withContext(Dispatchers.Main) {
+                            val intent: Intent
                             // Una vez actualizado el rol, procede según el rol asignado.
                             if (rol == "ADMIN") {
-                                val intent = Intent(this@LoginActivity, InmersionesActivity::class.java)
-                                startActivity(intent)
+                                intent = Intent(this@LoginActivity, InmersionesActivity::class.java)
+
                             } else {
-                                val intent = Intent(this@LoginActivity, ClientesActivity::class.java)
-                                startActivity(intent)
+                                intent = Intent(this@LoginActivity, ClientesActivity::class.java)
+
                             }
+                            intent.putExtra("email", email)
+                            startActivity(intent)
                             ActivityWithMenus.isLoggedIn = true // Usuario logeado
                         }
                     }
