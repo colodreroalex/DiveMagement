@@ -21,6 +21,9 @@ interface clientesDAO {
         fun asignarRol(email: String, password: String, rol: String)
 
 
+        //Funcion para buscar a clientes por email
+        @Query("SELECT * FROM t_clientes WHERE email = :email")
+        fun buscarClientePorEmail(email: String): MutableList<ListaClientes>
 
 
         @Insert
