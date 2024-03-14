@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaClientes
+import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.R
 
 class clientesAdapter (private var clientesList: MutableList<ListaClientes>):
@@ -34,6 +35,8 @@ class clientesAdapter (private var clientesList: MutableList<ListaClientes>):
         this.clientesList = newClientesList
         notifyDataSetChanged()
     }
+
+
 
 
 }

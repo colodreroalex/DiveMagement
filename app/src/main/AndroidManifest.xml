@@ -17,22 +17,22 @@
         android:theme="@style/Base.Theme.DiveMagement"
         tools:targetApi="31">
         <activity
-            android:name=".ActivitysClientes.ActivityHistorialClientes"
+            android:name=".Clientes.ActivityHistorialClientes"
             android:exported="false" />
         <activity
-            android:name=".ActivitysClientes.ActivityPerfilCliente"
+            android:name=".Clientes.ActivityPerfilCliente"
             android:exported="false" />
         <activity
-            android:name=".ActivitysClientes.ClientesActivity"
+            android:name=".Clientes.ClientesActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivitysInmersiones.UpdateInmersion"
+            android:name=".Inmersiones.UpdateInmersion"
             android:exported="false" />
         <activity
-            android:name=".ActivitysInmersiones.DeleteActivity"
+            android:name=".Inmersiones.DeleteActivity"
             android:exported="false" />
         <activity
-            android:name=".ActivitysInmersiones.Anadir_inmersion"
+            android:name=".Inmersiones.Anadir_inmersion"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
@@ -45,7 +45,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivitysInmersiones.InmersionesActivity"
+            android:name=".Inmersiones.InmersionesActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

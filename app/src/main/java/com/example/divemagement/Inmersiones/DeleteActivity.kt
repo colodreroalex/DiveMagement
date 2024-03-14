@@ -1,4 +1,4 @@
-package com.example.divemagement.ActivitysInmersiones
+package com.example.divemagement.Inmersiones
 
 import android.content.Intent
 import android.os.Bundle

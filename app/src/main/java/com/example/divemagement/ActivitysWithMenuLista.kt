@@ -4,9 +4,9 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.divemagement.ActivitysInmersiones.Anadir_inmersion
-import com.example.divemagement.ActivitysInmersiones.DeleteActivity
-import com.example.divemagement.ActivitysInmersiones.UpdateInmersion
+import com.example.divemagement.Inmersiones.Anadir_inmersion
+import com.example.divemagement.Inmersiones.DeleteActivity
+import com.example.divemagement.Inmersiones.UpdateInmersion
 
 
 open class ActivitysWithMenuLista: AppCompatActivity() {

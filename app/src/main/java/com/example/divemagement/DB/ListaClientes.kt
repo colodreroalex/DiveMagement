@@ -10,5 +10,6 @@ data class ListaClientes (
     var password : String = "",
     var telefono : String = "",
     var email : String = "",
-    var rol : String? = ""
+    var rol : String? = "",
+    var photo : String = ""
 )

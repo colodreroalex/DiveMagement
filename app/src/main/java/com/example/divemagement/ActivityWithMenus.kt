@@ -57,7 +57,6 @@ open class ActivityWithMenus: AppCompatActivity() {
             }
 
 
-
             else -> super.onOptionsItemSelected(item)
         }
 

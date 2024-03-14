@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
-import com.example.divemagement.ActivitysClientes.ClientesActivity
-import com.example.divemagement.ActivitysInmersiones.InmersionesActivity
+import com.example.divemagement.Clientes.ClientesActivity
+import com.example.divemagement.Inmersiones.InmersionesActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -71,7 +71,7 @@ class LoginActivity : ActivityWithMenus() {
     }
 
 
-    //Metodo para logear con FireBase al Admin - probisional
+    //Metodo para logear con FireBase al Admin
     private fun login() {
         val email = binding.email.text.toString().trim()
         val password = binding.tbPasswordLogin.text.toString().trim()
@@ -120,5 +120,7 @@ class LoginActivity : ActivityWithMenus() {
         email.text.clear()
         tbPasswordLogin.text.clear()
     }
+
+
 
 }

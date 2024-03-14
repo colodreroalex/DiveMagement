@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondoapp"
-    tools:context=".ActivitysInmersiones.InmersionesActivity">
+    tools:context=".Inmersiones.InmersionesActivity">
 
     <EditText
         android:id="@+id/idFiltro"

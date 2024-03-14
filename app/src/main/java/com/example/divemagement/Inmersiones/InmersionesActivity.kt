@@ -1,4 +1,4 @@
-package com.example.divemagement.ActivitysInmersiones
+package com.example.divemagement.Inmersiones
 
 import android.os.Bundle
 import android.view.WindowManager
