@@ -3,7 +3,7 @@ package com.example.divemagement.Inmersiones
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.example.divemagement.ActivitysWithMenuLista
+import androidx.appcompat.app.AppCompatActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityUpdateInmersionBinding
@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UpdateInmersion : ActivitysWithMenuLista() {
+class UpdateInmersion : AppCompatActivity() {
 
     lateinit var binding: ActivityUpdateInmersionBinding
     lateinit var adapter: inmersionesAdapter
@@ -26,7 +26,7 @@ class UpdateInmersion : ActivitysWithMenuLista() {
         adapter = inmersionesAdapter(mutableListOf())
 
         binding.botonActualizarInmersion.setOnClickListener{
-            if(binding.editTextNombreInmersion.text.isNotEmpty() && binding.editTextProfundidad.text.isNotEmpty() && binding.editTextTemperatura.text.isNotEmpty()){
+            if(!binding.editTextNombreInmersion.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty()){
                 val nuevaProf = binding.editTextProfundidad.text.toString().toFloat()
                 val nuevaTemp = binding.editTextTemperatura.text.toString().toFloat()
                 updateInmersion(nuevaProf, nuevaTemp)

@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Inmersiones.DeleteActivity"
-    android:background="@drawable/fondoapp">
+    android:background="@drawable/fondoapp"
+    tools:context=".Inmersiones.DeleteActivity">
 
-    <!-- EditText para recoger el nombre de la inmersión -->
-    <EditText
-        android:id="@+id/editTextNombreInmersion"
-        android:layout_width="match_parent"
+    <!-- TextInputLayout para el nombre de la inmersión -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNombreInmersion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la inmersión a eliminar"
-        android:textColor="@color/black"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textStyle="bold|italic" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreInmersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la inmersión a eliminar"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textStyle="bold|italic" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón para eliminar la inmersión -->
     <Button
         android:id="@+id/botonEliminarInmersion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Eliminar Inmersión"
+        app:layout_constraintTop_toBottomOf="@id/textInputNombreInmersion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:background="@color/lightBlue"
-        android:layout_below="@id/editTextNombreInmersion"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"/>
@@ -35,13 +48,15 @@
     <!-- Botón "Atrás" -->
     <Button
         android:id="@+id/bAtras"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/botonEliminarInmersion"
+        app:layout_constraintTop_toBottomOf="@id/botonEliminarInmersion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="Atrás"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="1dp"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

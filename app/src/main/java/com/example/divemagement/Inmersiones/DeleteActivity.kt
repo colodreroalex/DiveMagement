@@ -3,7 +3,7 @@ package com.example.divemagement.Inmersiones
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import com.example.divemagement.ActivitysWithMenuLista
+import androidx.appcompat.app.AppCompatActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityDeleteBinding
@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DeleteActivity : ActivitysWithMenuLista() {
+class DeleteActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityDeleteBinding
     lateinit var adapter: inmersionesAdapter
@@ -26,7 +26,7 @@ class DeleteActivity : ActivitysWithMenuLista() {
         adapter = inmersionesAdapter(mutableListOf())
 
         binding.botonEliminarInmersion.setOnClickListener {
-            if (binding.editTextNombreInmersion.text.isNotEmpty()) {
+            if (!binding.editTextNombreInmersion.text.isNullOrEmpty()) {
                 val nombreInmersion = binding.editTextNombreInmersion.text.toString()
                 borrarInmersion(nombreInmersion)
 

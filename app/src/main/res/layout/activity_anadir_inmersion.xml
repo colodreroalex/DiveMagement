@@ -5,115 +5,212 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondoapp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTextNombre"
-            android:layout_width="match_parent"
+        <!-- Nombre -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputNombre"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="1">
 
-        <EditText
-            android:id="@+id/editTextProfundidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Profundidad"
-            android:inputType="numberDecimal"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextFecha"
-            android:layout_width="match_parent"
+        <!-- Profundidad -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputProfundidad"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Fecha"
-            android:inputType="date"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            app:layout_constraintTop_toBottomOf="@+id/textInputNombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/editTextHora"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Hora"
-            android:inputType="time"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextProfundidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Profundidad"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextTemperatura"
-            android:layout_width="match_parent"
+        <!-- Fecha -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputFecha"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Temperatura"
-            android:inputType="numberDecimal"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            app:layout_constraintTop_toBottomOf="@+id/textInputProfundidad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/editTextVisibilidad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Visibilidad"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha"
+                android:inputType="date"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextLugar"
-            android:layout_width="match_parent"
+        <!-- Hora -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputHora"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Lugar"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            app:layout_constraintTop_toBottomOf="@+id/textInputFecha"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/editTextDescripcion"
-            android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextHora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hora"
+                android:inputType="time"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Temperatura -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputTemperatura"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Descripción"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"/>
+            app:layout_constraintTop_toBottomOf="@+id/textInputHora"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextTemperatura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Temperatura"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Visibilidad -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputVisibilidad"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textInputTemperatura"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextVisibilidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Visibilidad"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Lugar -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLugar"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textInputVisibilidad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextLugar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Lugar"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Descripción -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputDescripcion"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLugar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripción"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
             android:id="@+id/imagenButton"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:contentDescription="Boton para abrir la galeria"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/gallery" />
+            android:src="@drawable/gallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputDescripcion" />
 
         <Button
             android:id="@+id/buttonGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Guardar"
+            app:layout_constraintTop_toBottomOf="@id/imagenButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
-            android:textSize="35sp"
-            android:textStyle="italic|bold"/>
+            android:textSize="35sp"/>
 
         <Button
             android:id="@+id/salir"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Salir"
+            app:layout_constraintTop_toBottomOf="@id/buttonGuardar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
-            android:textSize="35sp"
-            android:textStyle="italic|bold"/>
+            android:textSize="35sp"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+

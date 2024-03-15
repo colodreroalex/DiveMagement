@@ -6,7 +6,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.divemagement.ActivitysWithMenuLista
+import androidx.appcompat.app.AppCompatActivity
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class Anadir_inmersion : ActivitysWithMenuLista() {
+class Anadir_inmersion : AppCompatActivity() {
 
 
     private lateinit var binding: ActivityAnadirInmersionBinding
@@ -42,10 +42,10 @@ class Anadir_inmersion : ActivitysWithMenuLista() {
 
 
         binding.buttonGuardar.setOnClickListener {
-            if (binding.editTextNombre.text.isNotEmpty() && binding.editTextProfundidad.text.isNotEmpty() && binding.editTextFecha.text.isNotEmpty() && binding.editTextHora.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextTemperatura.text.isNotEmpty() && binding.editTextVisibilidad.text.isNotEmpty() && binding.editTextLugar.text.isNotEmpty() && binding.editTextDescripcion.text.isNotEmpty()) {
+            if (!binding.editTextNombre.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextFecha.text.isNullOrEmpty() && !binding.editTextHora.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextLugar.text.isNullOrEmpty() && !binding.editTextDescripcion.text.isNullOrEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {
                     val inmersion = miInmersionApp.database.inmersionesDAO()
-                        .buscarInmersionPorNombre(binding.editTextNombre.text.toString())
+                        .buscarInmersionPorNombre(binding.editTextNombre.text!!.toString())
                     if (inmersion.isEmpty()) {
                         miInmersionApp.database.inmersionesDAO().insertInmersion(
                             ListaInmersiones(

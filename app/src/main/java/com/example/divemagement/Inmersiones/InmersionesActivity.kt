@@ -10,9 +10,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.divemagement.ActivitysWithMenuLista
-import com.example.divemagement.Clientes.ActivityHistorialClientes
-import com.example.divemagement.Clientes.ActivityPerfilCliente
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.InmersionesProvider

@@ -60,6 +60,11 @@ class MainActivity : ActivityWithMenus() {
             }
         }
 
+        binding.bLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

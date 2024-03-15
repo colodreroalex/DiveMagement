@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".Inmersiones.UpdateInmersion"
-    android:background="@drawable/fondoapp">
+    android:background="@drawable/fondoapp"
+    tools:context=".Inmersiones.UpdateInmersion">
 
-    <!-- EditText para recoger el nombre de la inmersión -->
-    <EditText
-        android:id="@+id/editTextNombreInmersion"
-        android:layout_width="match_parent"
+    <!-- TextInputLayout para el nombre de la inmersión -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputNombreInmersion"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la inmersión a actualizar"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textStyle="bold|italic"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="1">
 
-    <!-- EditText para actualizar la profundidad -->
-    <EditText
-        android:id="@+id/editTextProfundidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nueva profundidad"
-        android:inputType="numberDecimal"
-        android:padding="12dp"
-        android:textStyle="bold|italic"
-        android:layout_below="@id/editTextNombreInmersion"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextNombreInmersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la inmersión a actualizar"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:textStyle="bold|italic"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- EditText para actualizar la temperatura -->
-    <EditText
-        android:id="@+id/editTextTemperatura"
-        android:layout_width="match_parent"
+    <!-- TextInputLayout para actualizar la profundidad -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputProfundidad"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Nueva temperatura"
-        android:inputType="numberDecimal"
-        android:padding="12dp"
-        android:textStyle="bold|italic"
-        android:layout_below="@id/editTextProfundidad"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+        app:layout_constraintTop_toBottomOf="@id/textInputNombreInmersion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextProfundidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nueva profundidad"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:textStyle="bold|italic"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- TextInputLayout para actualizar la temperatura -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputTemperatura"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textInputProfundidad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTemperatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nueva temperatura"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:padding="12dp"
+            android:textStyle="bold|italic"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón para actualizar la inmersión -->
     <Button
         android:id="@+id/botonActualizarInmersion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Actualizar Inmersión"
+        app:layout_constraintTop_toBottomOf="@id/textInputTemperatura"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:background="@color/lightBlue"
-        android:layout_below="@id/editTextTemperatura"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"/>
@@ -61,14 +92,17 @@
     <!-- Botón "Atrás" -->
     <Button
         android:id="@+id/bAtras"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/botonActualizarInmersion"
+        app:layout_constraintTop_toBottomOf="@id/botonActualizarInmersion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="Atrás"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="italic|bold"
         android:layout_marginTop="16dp"/>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
