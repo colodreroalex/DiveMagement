@@ -6,14 +6,18 @@
 
     <item
         android:id="@+id/añadir"
-        android:title="Añadir inmersión" />
+        android:title="Añadir inmersión"
+        android:icon="@drawable/anadir_icon"/>
     <item
         android:id="@+id/eliminar"
-        android:title="Eliminar inmersión" />
+        android:title="Eliminar inmersión"
+        android:icon="@drawable/eliminar_icon"/>
     <item
         android:id="@+id/actualizar"
-        android:title="Actualizar inmersión" />
+        android:title="Actualizar inmersión"
+        android:icon="@drawable/update_icon"/>
     <item
         android:id="@+id/id_salir"
-        android:title="Salir" />
+        android:title="Salir"
+        android:icon="@drawable/icon_cerrarsesion"/>
 </menu>

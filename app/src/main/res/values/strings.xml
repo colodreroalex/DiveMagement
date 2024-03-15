@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">DiveMagement</string>
     <string name="titulo_barra">Opciones del cliente</string>
+    <string name="titulo_barra2">Opciones de inmersiones</string>
     <string name="añadir">Añadir inmersión</string>
     <string name="eliminar">Eliminar inmersión</string>
     <string name="actualizar">Actualizar inmersión</string>
