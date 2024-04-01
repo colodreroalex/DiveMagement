@@ -3,7 +3,10 @@ package com.example.divemagement.Clientes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.AdapterView
 import androidx.activity.OnBackPressedCallback
 
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -16,10 +19,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
+import com.example.divemagement.Inmersiones.ReservaInmersion
 import com.example.divemagement.InmersionesProvider
 import com.example.divemagement.LoginActivity
 import com.example.divemagement.R
+
+
 import com.example.divemagement.adapter.inmersionesAdapter
+
 import com.example.divemagement.databinding.ActivityClientesBinding
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
@@ -33,6 +40,8 @@ class ClientesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClientesBinding
     private lateinit var inmersiones: MutableList<ListaInmersiones>
     private lateinit var recyclerView: RecyclerView
+
+
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -49,6 +58,7 @@ class ClientesActivity : AppCompatActivity() {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
         adapter = inmersionesAdapter(mutableListOf())
+
         inmersiones = InmersionesProvider.inmersionesList
 
         getInmersiones()
@@ -71,8 +81,13 @@ class ClientesActivity : AppCompatActivity() {
         //Metodo que configura el toolbar
         configuracionToolBar()
 
-    }
 
+    }
+    fun abrirReservaInmersion(inmersion: ListaInmersiones) {
+        val intent = Intent(this, ReservaInmersion::class.java)
+        intent.putExtra("inmersion_id", inmersion.id)
+        startActivity(intent)
+    }
 
     fun configuracionToolBar(){
 
@@ -151,4 +166,6 @@ class ClientesActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }

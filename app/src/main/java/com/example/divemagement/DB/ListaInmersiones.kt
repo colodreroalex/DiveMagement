@@ -1,6 +1,8 @@
 package com.example.divemagement.DB
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
+
 
 @Entity(tableName = "t_inmersiones")
 data class ListaInmersiones (
@@ -14,5 +16,5 @@ data class ListaInmersiones (
     var visibilidad:String="",
     var lugar:String="",
     var descripcion:String="",
-    var photo:String=""
+    var photo:String?=""
 )

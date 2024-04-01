@@ -1,15 +1,19 @@
 package com.example.divemagement.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.R
 
-class inmersionesAdapter(private var inmersionesList: MutableList<ListaInmersiones>) :
-    RecyclerView.Adapter<inmersionesViewHolder>() {
 
 
+
+
+class inmersionesAdapter(
+    private var inmersionesList: MutableList<ListaInmersiones>
+) : RecyclerView.Adapter<inmersionesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): inmersionesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -36,6 +40,9 @@ class inmersionesAdapter(private var inmersionesList: MutableList<ListaInmersion
         this.inmersionesList = newInmersionesList
         notifyDataSetChanged()
     }
+
+
+
 
 
 }

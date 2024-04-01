@@ -18,6 +18,9 @@ interface inmersionesDAO {
     @Query("SELECT * FROM t_inmersiones WHERE nombre LIKE :nombre LIMIT 1")
     fun buscarInmersionPorNombreLista(nombre: String): ListaInmersiones?
 
+    @Query("SELECT * FROM t_inmersiones WHERE id = :id")
+    fun getInmersionesPorId(id: Int): ListaInmersiones
+
 
 
     //Añadir inmersion

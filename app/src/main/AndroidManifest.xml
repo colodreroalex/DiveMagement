@@ -17,6 +17,9 @@
         android:theme="@style/Base.Theme.DiveMagement"
         tools:targetApi="31">
         <activity
+            android:name=".Inmersiones.ReservaInmersion"
+            android:exported="false" />
+        <activity
             android:name=".Clientes.ActivityHistorialClientes"
             android:exported="false" />
         <activity

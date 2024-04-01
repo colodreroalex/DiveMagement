@@ -6,8 +6,11 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaClientes
+import com.example.divemagement.DB.ListaClientesInmersiones
+import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.clientesAdapter
+import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityHistorialClientesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,9 +19,10 @@ import kotlinx.coroutines.launch
 class ActivityHistorialClientes : AppCompatActivity() {
 
     lateinit var binding: ActivityHistorialClientesBinding
-    lateinit var adapter: clientesAdapter
-    lateinit var clientes: MutableList<ListaClientes>
+    lateinit var adapter: inmersionesAdapter
+    lateinit var clientesInmersiones: MutableList<ListaClientesInmersiones>
     lateinit var recyclerView: RecyclerView
+    lateinit var inmersiones: MutableList<ListaInmersiones>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Historial de Clientes"
@@ -26,19 +30,12 @@ class ActivityHistorialClientes : AppCompatActivity() {
         binding = ActivityHistorialClientesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = clientesAdapter(mutableListOf())
+        // Intenta obtener el email del Intent, si no existe, usa SharedPreferences
+        val emailUsuarioRegistrado = intent.getStringExtra("user_email")
+            ?: getSharedPreferences("AppPreferences", MODE_PRIVATE).getString("user_email", "No definido")
+            ?: "No definido"
 
-        CoroutineScope(Dispatchers.IO).launch {
-            //Obtener los clientes de la bbdd
-            clientes = miInmersionApp.database.clientesDAO().getAllClientes()
-            runOnUiThread {
-                adapter.actualizarClientesList(clientes)
-                adapter.notifyDataSetChanged()
-                recyclerView = binding.recyclerclientes
-                recyclerView.layoutManager = LinearLayoutManager(this@ActivityHistorialClientes)
-                recyclerView.adapter = adapter
-            }
-        }
+        adapter = inmersionesAdapter(mutableListOf())
 
         binding.botonFlotante.setOnClickListener {
             val intent = Intent(this, ClientesActivity::class.java)
@@ -46,12 +43,15 @@ class ActivityHistorialClientes : AppCompatActivity() {
         }
     }
 
+
+
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.IO).launch {
-            clientes = miInmersionApp.database.clientesDAO().getAllClientes()
+
+            clientesInmersiones = miInmersionApp.database.clientesInmersionesDAO().getInmersionesClientePorEmail(intent.getStringExtra("user_email")!!)
             runOnUiThread {
-                adapter.actualizarClientesList(clientes)
+                adapter.updateInmersionesList(inmersiones)
                 adapter.notifyDataSetChanged()
             }
         }

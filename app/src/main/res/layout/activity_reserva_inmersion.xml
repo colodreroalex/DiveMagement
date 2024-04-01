@@ -28,10 +28,11 @@
                 android:id="@+id/editTextNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
+                android:focusable="false"
                 android:hint="Nombre"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Profundidad -->
@@ -55,7 +56,8 @@
                 android:hint="Profundidad"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Fecha -->
@@ -79,7 +81,8 @@
                 android:hint="Fecha"
                 android:inputType="date"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Hora -->
@@ -103,7 +106,8 @@
                 android:hint="Hora"
                 android:inputType="time"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Temperatura -->
@@ -127,7 +131,8 @@
                 android:hint="Temperatura"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Visibilidad -->
@@ -150,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Visibilidad"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -174,7 +180,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Lugar"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Descripción -->
@@ -197,7 +204,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Descripción"
                 android:textColor="@color/white"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
@@ -212,10 +220,10 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputDescripcion" />
 
         <Button
-            android:id="@+id/buttonGuardar"
+            android:id="@+id/bReservarInmersion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="Reservar"
             app:layout_constraintTop_toBottomOf="@id/imagenButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -223,19 +231,19 @@
             android:textColor="@color/white"
             android:textSize="35sp"/>
 
-        <Button
-            android:id="@+id/salir"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Salir"
-            app:layout_constraintTop_toBottomOf="@id/buttonGuardar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/white"
-            android:textSize="35sp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+
+
+
+
+
+
+
+
+
+
 

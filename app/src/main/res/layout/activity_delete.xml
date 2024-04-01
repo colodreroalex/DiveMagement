@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/fondoapp"
+    android:background="@drawable/back_cliente"
     tools:context=".Inmersiones.DeleteActivity">
 
     <!-- TextInputLayout para el nombre de la inmersión -->
@@ -17,14 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="1">
+        app:layout_constraintWidth_percent="1"
+        android:textColorHint="@color/white"
+        app:boxStrokeColor="@color/white"
+        app:placeholderTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextNombreInmersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre de la inmersión a eliminar"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:inputType="text"
             android:padding="12dp"
             android:textStyle="bold|italic" />
@@ -41,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:background="@color/lightBlue"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="italic|bold"/>
 
@@ -54,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Atrás"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="italic|bold"
         android:layout_marginTop="1dp"/>

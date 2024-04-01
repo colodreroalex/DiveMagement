@@ -7,7 +7,9 @@ import com.example.divemagement.DB.ListaClientes
 import com.example.divemagement.databinding.ItemClientesBinding
 
 class clientesViewHolder(view: View): RecyclerView.ViewHolder(view) {
+
     val binding = ItemClientesBinding.bind(view)
+
 
     fun render(clienteModel: ListaClientes){
         binding.nombreCliente.text = clienteModel.username
@@ -16,4 +18,6 @@ class clientesViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
 
     }
+
+
 }
