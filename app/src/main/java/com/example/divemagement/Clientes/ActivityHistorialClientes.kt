@@ -37,7 +37,7 @@ class ActivityHistorialClientes : AppCompatActivity() {
             ?: getSharedPreferences("AppPreferences", MODE_PRIVATE).getString("user_email", "No definido")
             ?: "No definido"
 
-        adapter = inmersionesAdapter(mutableListOf())
+        adapter = inmersionesAdapter(mutableListOf(), false)
 
         binding.botonFlotante.setOnClickListener {
             val intent = Intent(this, ClientesActivity::class.java)

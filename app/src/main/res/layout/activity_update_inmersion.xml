@@ -93,6 +93,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/alegreya_sc_italic"
         android:background="@color/lightBlue"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -107,7 +108,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Atrás"
+        android:fontFamily="@font/alegreya_sc_italic"
         android:textColor="@color/white"
+        android:backgroundTint="@color/purple"
         android:textSize="20sp"
         android:textStyle="italic|bold"
         android:layout_marginTop="16dp"/>

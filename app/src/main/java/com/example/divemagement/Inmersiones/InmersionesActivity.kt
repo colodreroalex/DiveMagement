@@ -42,7 +42,7 @@ class InmersionesActivity : AppCompatActivity() {
         // Esconder el teclado cuando se inicie la activity de inmersiones
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 
-        adapter = inmersionesAdapter(mutableListOf())
+        adapter = inmersionesAdapter(mutableListOf(), false)
         inmersiones = InmersionesProvider.inmersionesList
 
         getInmersiones()
@@ -73,7 +73,7 @@ class InmersionesActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             inmersiones = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
             runOnUiThread {
-                adapter = inmersionesAdapter(inmersiones)
+                adapter = inmersionesAdapter(inmersiones, false)
                 recyclerView = binding.recycler
                 recyclerView.layoutManager = LinearLayoutManager(this@InmersionesActivity)
                 recyclerView.adapter = adapter

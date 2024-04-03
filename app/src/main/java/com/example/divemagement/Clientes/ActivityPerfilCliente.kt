@@ -21,9 +21,18 @@ class ActivityPerfilCliente : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilClienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //PopUp informando al Usuario que en este apartado podrá modificar sus datos
+        AlertDialog.Builder(this)
+            .setTitle("Actualizar datos")
+            .setMessage("Aquí podrás modificar tu nombre y teléfono.")
+            .setPositiveButton("Entendido", null)
+            .show()
 
         // Intenta obtener el email del Intent, si no existe, usa SharedPreferences
         val emailUsuarioRegistrado = intent.getStringExtra("user_email") ?: run {

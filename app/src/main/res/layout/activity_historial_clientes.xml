@@ -32,6 +32,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/purple"
         android:src="@drawable/icon_cerrarsesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

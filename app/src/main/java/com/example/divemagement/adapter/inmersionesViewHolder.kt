@@ -14,25 +14,30 @@ class inmersionesViewHolder(view: View): RecyclerView.ViewHolder(view) {
     val binding = ItemInmersionesBinding.bind(view)
 
 
-    fun render(inmersionModel: ListaInmersiones){
+    fun render(inmersionModel: ListaInmersiones, clickable: Boolean){
         binding.titulo.text = inmersionModel.nombre
         binding.profundidad.text = inmersionModel.profundidad.toString()
         binding.temperatura.text = inmersionModel.temperatura.toString()
         Glide.with(binding.cardViewImage.context).load(inmersionModel.photo).into(binding.cardViewImage)
 
-        binding.cardview.setOnClickListener(View.OnClickListener {
-            val intent = Intent(binding.cardview.context, ReservaInmersion::class.java)
-            intent.putExtra("nombre", inmersionModel.nombre)
-            intent.putExtra("profundidad", inmersionModel.profundidad)
-            intent.putExtra("fecha", inmersionModel.fecha)
-            intent.putExtra("hora", inmersionModel.hora)
-            intent.putExtra("visibilidad", inmersionModel.visibilidad)
-            intent.putExtra("temperatura", inmersionModel.temperatura)
-            intent.putExtra("lugar", inmersionModel.lugar)
-            intent.putExtra("descripcion", inmersionModel.descripcion)
-            intent.putExtra("photo", inmersionModel.photo)
-            binding.cardview.context.startActivity(intent)
-        })
+
+        if(clickable) {
+            binding.cardview.setOnClickListener(View.OnClickListener {
+                val intent = Intent(binding.cardview.context, ReservaInmersion::class.java)
+                intent.putExtra("nombre", inmersionModel.nombre)
+                intent.putExtra("profundidad", inmersionModel.profundidad)
+                intent.putExtra("fecha", inmersionModel.fecha)
+                intent.putExtra("hora", inmersionModel.hora)
+                intent.putExtra("visibilidad", inmersionModel.visibilidad)
+                intent.putExtra("temperatura", inmersionModel.temperatura)
+                intent.putExtra("lugar", inmersionModel.lugar)
+                intent.putExtra("descripcion", inmersionModel.descripcion)
+                intent.putExtra("photo", inmersionModel.photo)
+                binding.cardview.context.startActivity(intent)
+            })
+        }
+
+
     }
 
 
