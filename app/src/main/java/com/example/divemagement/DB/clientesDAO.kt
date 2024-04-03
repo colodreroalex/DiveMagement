@@ -25,6 +25,11 @@ interface clientesDAO {
         @Query("SELECT * FROM t_clientes WHERE email = :email")
         fun buscarClientePorEmail(email: String): MutableList<ListaClientes>
 
+        //Obtener id de cliente por email
+        @Query("SELECT id FROM t_clientes WHERE email = :email")
+        fun getIdClientePorEmail(email: String): Int
+
+
 
         @Insert
         fun insertCliente(cliente: ListaClientes)
@@ -36,6 +41,11 @@ interface clientesDAO {
 
         @Delete
         suspend fun deleteCliente(cliente: ListaClientes)
+
+
+        //Funcion para obtener un cliente por su id
+        @Query("SELECT * FROM t_clientes WHERE id = :idCliente")
+        fun getClientById(idCliente: Int): ListaClientes
 }
 
 

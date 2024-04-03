@@ -69,12 +69,7 @@ class MainActivity : ActivityWithMenus() {
     }
 
 
-    private fun mostrarConfirmacionDialog(
-        username: String,
-        password: String,
-        tlf: String,
-        correo: String,
-    ) {
+    private fun mostrarConfirmacionDialog(username: String, password: String, tlf: String, correo: String) {
         val alerta = AlertDialog.Builder(this)
         alerta.setTitle("Confirmación")
         alerta.setMessage("¿Estás seguro de registrar al cliente?")
@@ -88,14 +83,25 @@ class MainActivity : ActivityWithMenus() {
                     if (it.isSuccessful) {
                         // Insertar al cliente en la base de datos SQLite
                         CoroutineScope(Dispatchers.IO).launch {
-                            val result = miInmersionApp.database.clientesDAO().insertCliente(
-                                ListaClientes(
-                                    username = username,
-                                    password = password,
-                                    telefono = tlf,
-                                    email = correo
-                                )
+                            val newClient = ListaClientes(
+                                username = username,
+                                password = password,
+                                telefono = tlf,
+                                email = correo
                             )
+                            miInmersionApp.database.clientesDAO().insertCliente(newClient)
+
+                            // Query the database to check if the user was inserted correctly
+                            val insertedClient = miInmersionApp.database.clientesDAO().buscarClientePorEmail(correo)
+                            if (insertedClient != null && insertedClient.isNotEmpty()) {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@MainActivity, "User inserted successfully", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(this@MainActivity, "Failed to insert user", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
                     } else {
                         Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT)

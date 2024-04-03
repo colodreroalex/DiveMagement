@@ -20,6 +20,10 @@ import androidx.room.ForeignKey
             childColumns = ["id_inmersion"],
             onDelete = ForeignKey.CASCADE
         )
+    ],
+    indices = [
+        androidx.room.Index(value = ["id_cliente"]),
+        androidx.room.Index(value = ["id_inmersion"])
     ]
 )
 data class ListaClientesInmersiones(

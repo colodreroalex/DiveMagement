@@ -15,6 +15,7 @@ import com.example.divemagement.databinding.ActivityHistorialClientesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ActivityHistorialClientes : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class ActivityHistorialClientes : AppCompatActivity() {
     lateinit var clientesInmersiones: MutableList<ListaClientesInmersiones>
     lateinit var recyclerView: RecyclerView
     lateinit var inmersiones: MutableList<ListaInmersiones>
+    lateinit var clientes: MutableList<ListaClientes>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         title = "Historial de Clientes"
@@ -41,20 +43,43 @@ class ActivityHistorialClientes : AppCompatActivity() {
             val intent = Intent(this, ClientesActivity::class.java)
             startActivity(intent)
         }
+
+        CoroutineScope(Dispatchers.IO).launch {
+
+            // Obtiene el ID del cliente actual
+            val idClienteActual = miInmersionApp.database.clientesDAO().getIdClientePorEmail(emailUsuarioRegistrado)
+
+            // Obtiene la lista de inmersiones de un cliente
+            clientesInmersiones = miInmersionApp.database.clientesInmersionesDAO().getInmersionesCliente(idClienteActual)
+
+            inmersiones = miInmersionApp.database.inmersionesDAO().getAllInmersiones()
+
+            // Crea una lista de inmersiones a partir de la lista de inmersiones de un cliente
+            val inmersionesCliente = mutableListOf<ListaInmersiones>()
+            clientesInmersiones.forEach { clienteInmersion ->
+                inmersiones.forEach { inmersion ->
+                    if (clienteInmersion.idInmersion == inmersion.id) {
+                        inmersionesCliente.add(inmersion)
+                    }
+                }
+            }
+
+            // Actualiza la lista de inmersiones del adapter
+            adapter.updateInmersionesList(inmersionesCliente)
+
+            // Actualiza la lista de inmersiones del RecyclerView
+            withContext(Dispatchers.Main) {
+                recyclerView = binding.recyclerHistorial
+                recyclerView.layoutManager = LinearLayoutManager(this@ActivityHistorialClientes)
+                recyclerView.adapter = adapter
+            }
+        }
     }
 
 
 
     override fun onResume() {
         super.onResume()
-        CoroutineScope(Dispatchers.IO).launch {
-
-            clientesInmersiones = miInmersionApp.database.clientesInmersionesDAO().getInmersionesClientePorEmail(intent.getStringExtra("user_email")!!)
-            runOnUiThread {
-                adapter.updateInmersionesList(inmersiones)
-                adapter.notifyDataSetChanged()
-            }
-        }
     }
 
 

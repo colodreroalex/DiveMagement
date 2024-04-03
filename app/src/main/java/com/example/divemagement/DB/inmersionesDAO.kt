@@ -23,6 +23,9 @@ interface inmersionesDAO {
 
 
 
+
+
+
     //Añadir inmersion
     @Insert
     fun insertInmersion(inmersion: ListaInmersiones)
@@ -32,6 +35,7 @@ interface inmersionesDAO {
 
     @Delete
     suspend fun deleteInmersion(inmersion: ListaInmersiones)
+
 
 
 
