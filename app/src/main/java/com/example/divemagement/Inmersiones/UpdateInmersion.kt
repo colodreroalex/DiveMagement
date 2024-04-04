@@ -3,7 +3,9 @@ package com.example.divemagement.Inmersiones
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityUpdateInmersionBinding
@@ -41,27 +43,50 @@ class UpdateInmersion : AppCompatActivity() {
     }
 
     private fun updateInmersion(nuevaProf: Float, nuevaTemp: Float) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val inmersiones = miInmersionApp.database.inmersionesDAO().buscarInmersionPorNombre(binding.editTextNombreInmersion.text.toString())
-            if (inmersiones.isNotEmpty()) {
-                val inmersion = inmersiones[0]
-                inmersion.profundidad = nuevaProf
-                inmersion.temperatura = nuevaTemp
-                miInmersionApp.database.inmersionesDAO().updateInmersion(inmersion)
-                runOnUiThread {
-                    clearTextos()
-                    Toast.makeText(this@UpdateInmersion, "Inmersion actualizada correctamente", Toast.LENGTH_SHORT).show()
-                    actualizarRecyclerView()
-                    adapter.notifyDataSetChanged()
-                    volverListadoInmersiones()
-                }
-            } else {
-                runOnUiThread {
-                    Toast.makeText(this@UpdateInmersion, "Esta inmersion no existe en la base de datos", Toast.LENGTH_SHORT).show()
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirmar actualización")
+        builder.setMessage("¿Estás seguro de que quieres actualizar la inmersión?")
+        builder.setPositiveButton("Sí") { _, _ ->
+            CoroutineScope(Dispatchers.IO).launch {
+                val inmersiones =
+                    miInmersionApp.database.inmersionesDAO().buscarInmersionPorNombre(binding.editTextNombreInmersion.text.toString())
+                if (inmersiones.isNotEmpty()) {
+                    val inmersion = inmersiones[0]
+                    inmersion.profundidad = nuevaProf
+                    inmersion.temperatura = nuevaTemp
+                    miInmersionApp.database.inmersionesDAO().updateInmersion(inmersion)
+                    runOnUiThread {
+                        clearTextos()
+                        Toast.makeText(
+                            this@UpdateInmersion,
+                            "Inmersión actualizada correctamente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        actualizarRecyclerView()
+                        adapter.notifyDataSetChanged()
+                        volverListadoInmersiones()
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@UpdateInmersion,
+                            "Esta inmersión no existe en la base de datos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // Establecer el color del botón "Sí" en rojo
+        val alertDialog = builder.show()
+        val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        positiveButton.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
     }
+
 
     private fun actualizarRecyclerView() {
         CoroutineScope(Dispatchers.IO).launch {

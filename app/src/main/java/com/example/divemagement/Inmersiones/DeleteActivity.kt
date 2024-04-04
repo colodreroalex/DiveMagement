@@ -1,9 +1,12 @@
 package com.example.divemagement.Inmersiones
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityDeleteBinding
@@ -47,35 +50,50 @@ class DeleteActivity : AppCompatActivity() {
 
 
     fun borrarInmersion(nombre: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val inmersion_borrar =
-                miInmersionApp.database.inmersionesDAO().buscarInmersionPorNombre(nombre)
-            if (inmersion_borrar.isNotEmpty()) {
-                val inmersionBorrada = inmersion_borrar[0]
-                miInmersionApp.database.inmersionesDAO().deleteInmersion(inmersionBorrada)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Confirmar eliminación")
+        builder.setMessage("¿Estás seguro de que quieres eliminar la inmersión?")
+        builder.setPositiveButton("Sí") { _, _ ->
+            CoroutineScope(Dispatchers.IO).launch {
+                val inmersion_borrar =
+                    miInmersionApp.database.inmersionesDAO().buscarInmersionPorNombre(nombre)
+                if (inmersion_borrar.isNotEmpty()) {
+                    val inmersionBorrada = inmersion_borrar[0]
+                    miInmersionApp.database.inmersionesDAO().deleteInmersion(inmersionBorrada)
 
-                runOnUiThread {
-                    clearTextos()
-                    Toast.makeText(
-                        this@DeleteActivity,
-                        "Inmersion eliminada correctamente",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    actualizarRecyclerView()
-                    adapter.notifyDataSetChanged()
-                    volverListadoInmersiones()
-                }
-            } else {
-                runOnUiThread {
-                    Toast.makeText(
-                        this@DeleteActivity,
-                        "Inmersion no encontrada",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    runOnUiThread {
+                        clearTextos()
+                        Toast.makeText(
+                            this@DeleteActivity,
+                            "Inmersión eliminada correctamente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        actualizarRecyclerView()
+                        adapter.notifyDataSetChanged()
+                        volverListadoInmersiones()
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@DeleteActivity,
+                            "Inmersión no encontrada",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
+        builder.setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        // Agregar el estilo de texto para el botón "Sí" con color rojo
+        val alertDialog = builder.show()
+        val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        positiveButton.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
     }
+
+
 
 
     private fun actualizarRecyclerView() {

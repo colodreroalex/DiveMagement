@@ -7,6 +7,7 @@ import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.example.divemagement.Clientes.ClientesActivity
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.databinding.ActivityReservaInmersionBinding
@@ -65,10 +66,10 @@ class ReservaInmersion : AppCompatActivity() {
 
     //Funcion para que al hacer click en el boton de reserva se pregunte al usuario si esta seguro de reservar la inmersion
     fun reservaInmersion(view: View) {
-        val constructorDialogo = AlertDialog.Builder(this)
-        constructorDialogo.setTitle("Reservar inmersión")
-        constructorDialogo.setMessage("¿Estás seguro de reservar esta inmersión?")
-        constructorDialogo.setPositiveButton("Sí") { dialog, which ->
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Reservar inmersión")
+        builder.setMessage("¿Estás seguro de reservar esta inmersión?")
+        builder.setPositiveButton("Sí") { dialog, which ->
             // Si el usuario pulsa en sí, se asigna la inmersión al cliente
             CoroutineScope(Dispatchers.IO).launch {
                 // Obtener el nombre del cliente y el ID del cliente.
@@ -106,12 +107,17 @@ class ReservaInmersion : AppCompatActivity() {
                 }
             }
         }
-        constructorDialogo.setNegativeButton("No") { dialog, which ->
+        builder.setNegativeButton("No") { dialog, which ->
             // Si el usuario pulsa en no, se cierra el diálogo.
             dialog.dismiss()
         }
-        constructorDialogo.show()
+
+        // Establecer el color del botón "Sí" en rojo
+        val alertDialog = builder.show()
+        val positiveButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        positiveButton.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
     }
+
 
 
 

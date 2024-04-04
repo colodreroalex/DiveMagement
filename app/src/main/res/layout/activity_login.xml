@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/bungee_shade"
+        android:fontFamily="@font/alegreya_sc_italic"
         android:text="Blue Whale Diving"
         android:textColor="@color/black"
         android:textSize="30sp"
@@ -38,9 +38,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:inputType="textEmailAddress"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -57,11 +59,13 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tbPasswordLogin"
             android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"/>
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -93,18 +97,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="1dp"/>
-
-    <TextView
-        android:id="@+id/notRegisteredLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="👆Registrate aqui👆"
-        android:textStyle="italic|bold"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/bRegister_Login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
