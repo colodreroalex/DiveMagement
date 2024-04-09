@@ -3,10 +3,11 @@ package com.example.divemagement.DB
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "t_clientes_inmersiones",
-    primaryKeys = ["id_cliente", "id_inmersion"],
+    tableName = "t_inscripciones",
+    primaryKeys = ["Id","id_cliente", "id_inmersion"],
     foreignKeys = [
         ForeignKey(
             entity = ListaClientes::class,
@@ -27,6 +28,8 @@ import androidx.room.ForeignKey
     ]
 )
 data class ListaClientesInmersiones(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     @ColumnInfo(name = "id_cliente")
     val idCliente: Int,
     @ColumnInfo(name = "id_inmersion")
