@@ -8,7 +8,4 @@ abstract class DBInmersion: RoomDatabase() {
     abstract fun clientesDAO(): clientesDAO
 
     abstract fun clientesInmersionesDAO(): clientesInmersionesDAO
-
-
-
 }

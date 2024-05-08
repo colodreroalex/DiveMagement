@@ -1,4 +1,4 @@
-package com.example.divemagement
+package com.example.divemagement.Inmersiones
 
 import com.example.divemagement.DB.ListaInmersiones
 

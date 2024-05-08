@@ -20,12 +20,6 @@ interface inmersionesDAO {
 
     @Query("SELECT * FROM t_inmersiones WHERE id = :id")
     fun getInmersionesPorId(id: Int): ListaInmersiones
-
-
-
-
-
-
     //Añadir inmersion
     @Insert
     fun insertInmersion(inmersion: ListaInmersiones)

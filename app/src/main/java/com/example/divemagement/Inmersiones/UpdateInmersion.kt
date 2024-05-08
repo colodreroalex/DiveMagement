@@ -31,7 +31,8 @@ class UpdateInmersion : AppCompatActivity() {
             if(!binding.editTextNombreInmersion.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty()){
                 val nuevaProf = binding.editTextProfundidad.text.toString().toFloat()
                 val nuevaTemp = binding.editTextTemperatura.text.toString().toFloat()
-                updateInmersion(nuevaProf, nuevaTemp)
+                val nuevaVisibilidad = binding.editTextVisibilidad.text.toString()
+                updateInmersion(nuevaProf, nuevaTemp, nuevaVisibilidad)
             } else {
                 Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
             }
@@ -42,7 +43,7 @@ class UpdateInmersion : AppCompatActivity() {
         }
     }
 
-    private fun updateInmersion(nuevaProf: Float, nuevaTemp: Float) {
+    private fun updateInmersion(nuevaProf: Float, nuevaTemp: Float, nuevaVisibilidad: String ) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Confirmar actualización")
         builder.setMessage("¿Estás seguro de que quieres actualizar la inmersión?")
@@ -54,6 +55,7 @@ class UpdateInmersion : AppCompatActivity() {
                     val inmersion = inmersiones[0]
                     inmersion.profundidad = nuevaProf
                     inmersion.temperatura = nuevaTemp
+                    inmersion.visibilidad = nuevaVisibilidad
                     miInmersionApp.database.inmersionesDAO().updateInmersion(inmersion)
                     runOnUiThread {
                         clearTextos()

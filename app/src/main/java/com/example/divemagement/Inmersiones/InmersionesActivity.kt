@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
-import com.example.divemagement.InmersionesProvider
 import com.example.divemagement.LoginActivity
 import com.example.divemagement.R
 import com.example.divemagement.adapter.inmersionesAdapter

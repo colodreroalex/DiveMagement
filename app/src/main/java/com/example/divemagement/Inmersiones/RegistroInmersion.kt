@@ -10,20 +10,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.divemagement.Clientes.ClientesActivity
 import com.example.divemagement.DB.miInmersionApp
-import com.example.divemagement.databinding.ActivityReservaInmersionBinding
+import com.example.divemagement.databinding.ActivityRegistroInmersionBinding
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ReservaInmersion : AppCompatActivity() {
+class RegistroInmersion : AppCompatActivity() {
 
-    lateinit var binding: ActivityReservaInmersionBinding
+    lateinit var binding: ActivityRegistroInmersionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityReservaInmersionBinding.inflate(layoutInflater)
+        binding = ActivityRegistroInmersionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -92,16 +92,16 @@ class ReservaInmersion : AppCompatActivity() {
 
                     // Mostrar un mensaje de éxito.
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@ReservaInmersion, "Inmersión reservada", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegistroInmersion, "Inmersión reservada", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     // Si alguno no existe, mostrar un mensaje de error correspondiente.
                     withContext(Dispatchers.Main) {
                         if (!clienteExiste) {
-                            Toast.makeText(this@ReservaInmersion, "Error: Cliente no encontrado", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistroInmersion, "Error: Cliente no encontrado", Toast.LENGTH_SHORT).show()
                         }
                         if (!inmersionExiste) {
-                            Toast.makeText(this@ReservaInmersion, "Error: Inmersión no encontrada", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistroInmersion, "Error: Inmersión no encontrada", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

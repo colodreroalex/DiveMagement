@@ -51,7 +51,7 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.1")
     //Corrutinas: Librerias para ejecutar cosas en segundo plano (ej:añadir a base de datos)
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-
+    
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

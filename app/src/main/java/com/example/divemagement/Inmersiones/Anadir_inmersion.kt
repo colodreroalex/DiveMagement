@@ -3,12 +3,15 @@ package com.example.divemagement.Inmersiones
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
+import com.example.divemagement.R
 import com.example.divemagement.adapter.inmersionesAdapter
 import com.example.divemagement.databinding.ActivityAnadirInmersionBinding
 import kotlinx.coroutines.CoroutineScope
@@ -40,59 +43,81 @@ class Anadir_inmersion : AppCompatActivity() {
             abrirGaleria()
         }
 
-
         binding.buttonGuardar.setOnClickListener {
-            if (!binding.editTextNombre.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextFecha.text.isNullOrEmpty() && !binding.editTextHora.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextLugar.text.isNullOrEmpty() && !binding.editTextDescripcion.text.isNullOrEmpty()) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val inmersion = miInmersionApp.database.inmersionesDAO()
-                        .buscarInmersionPorNombre(binding.editTextNombre.text!!.toString())
-                    if (inmersion.isEmpty()) {
-                        miInmersionApp.database.inmersionesDAO().insertInmersion(
-                            ListaInmersiones(
-                                nombre = binding.editTextNombre.text.toString(),
-                                profundidad = binding.editTextProfundidad.text.toString().toFloat(),
-                                fecha = binding.editTextFecha.text.toString(),
-                                hora = binding.editTextHora.text.toString(),
-                                visibilidad = binding.editTextVisibilidad.text.toString(),
-                                temperatura = binding.editTextTemperatura.text.toString().toInt()
-                                    .toFloat(),
-                                lugar = binding.editTextLugar.text.toString(),
-                                descripcion = binding.editTextDescripcion.text.toString()
-
-                            )
-
-                        )
-                        runOnUiThread {
-                            limpiarCampos()
-                            Toast.makeText(
-                                this@Anadir_inmersion,
-                                "Inmersion insertada",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            actualizarRecyclerView()
-                            adapter.notifyDataSetChanged()
-                            volverListadoInmersiones()
-                        }
-                    } else {
-                        runOnUiThread {
-                            Toast.makeText(
-                                this@Anadir_inmersion,
-                                "Esta inmersion ya está en la base de datos",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-
-                }
-            } else {
-                Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
-            }
+            saveInmersion()
         }
 
         binding.salir.setOnClickListener {
             adapter.notifyDataSetChanged()
-            //finish()
             volverListadoInmersiones()
+        }
+    }
+
+    private fun saveInmersion() {
+        val name = binding.editTextNombre.text.toString()
+        val prof = binding.editTextProfundidad.text.toString().toFloat()
+        val date = binding.editTextFecha.text.toString()
+        val hour = binding.editTextHora.text.toString()
+        val vis = binding.editTextVisibilidad.text.toString()
+        val temp = binding.editTextTemperatura.text.toString().toFloat()
+        val place = binding.editTextLugar.text.toString()
+        val desc = binding.editTextDescripcion.text.toString()
+        val foto = binding.imagenButton.toString()
+
+        if(!checkProfundidad(prof) || !checkTemperatura(temp)){
+            //Este return sirve para que no se ejecute el código
+            //de abajo si la profundidad o la temperatura no son correctas
+            return
+        }
+
+        if (!binding.editTextNombre.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextFecha.text.isNullOrEmpty() && !binding.editTextHora.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextLugar.text.isNullOrEmpty() && !binding.editTextDescripcion.text.isNullOrEmpty()) {
+            AlertDialog.Builder(this)
+                .setTitle("Confirmación")
+                .setMessage("¿Estás seguro de que quieres insertar esta inmersión?")
+                .setPositiveButton("Sí") { _, _ ->
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val inmersion = miInmersionApp.database.inmersionesDAO()
+                            .buscarInmersionPorNombre(binding.editTextNombre.text!!.toString())
+                        if (inmersion.isEmpty()) {
+                            miInmersionApp.database.inmersionesDAO().insertInmersion(
+                                ListaInmersiones(
+                                    nombre = name,
+                                    profundidad = prof,
+                                    fecha = date,
+                                    hora = hour,
+                                    visibilidad = vis,
+                                    temperatura = temp,
+                                    lugar = place,
+                                    descripcion = desc,
+                                    photo = foto
+                                )
+                            )
+                            runOnUiThread {
+                                limpiarCampos()
+                                Toast.makeText(
+                                    this@Anadir_inmersion,
+                                    "Inmersion insertada",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                actualizarRecyclerView()
+                                adapter.notifyDataSetChanged()
+                                volverListadoInmersiones()
+                            }
+                        } else {
+                            runOnUiThread {
+                                Toast.makeText(
+                                    this@Anadir_inmersion,
+                                    "Esta inmersion ya está en la base de datos",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                }
+                .setNegativeButton("No", null)
+                .show()
+        } else {
+            Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -143,6 +168,32 @@ class Anadir_inmersion : AppCompatActivity() {
         intent.type = "image/*"
         resultado.launch(intent)
     }
+
+    private fun checkProfundidad(profundidad: Float): Boolean{
+        if(profundidad < 1){
+            Toast.makeText(this, "La profundidad no puede ser menor a 0 metros", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(profundidad > 40){
+            Toast.makeText(this, "La profundidad no puede ser mayor a 40 metros", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+    private fun checkTemperatura(temperatura: Float): Boolean{
+        if(temperatura < 0){
+            Toast.makeText(this, "La temperatura no puede ser menor a 0 grados", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(temperatura > 35){
+            Toast.makeText(this, "La temperatura no puede ser mayor a 35 grados", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
+    }
+
+
 
 
 

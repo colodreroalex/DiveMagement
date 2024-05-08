@@ -3,10 +3,7 @@ package com.example.divemagement.Clientes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.view.WindowManager
-import android.widget.AdapterView
 import androidx.activity.OnBackPressedCallback
 
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.divemagement.DB.ListaInmersiones
 import com.example.divemagement.DB.miInmersionApp
-import com.example.divemagement.Inmersiones.ReservaInmersion
-import com.example.divemagement.InmersionesProvider
+import com.example.divemagement.Inmersiones.RegistroInmersion
+import com.example.divemagement.Inmersiones.InmersionesProvider
 import com.example.divemagement.LoginActivity
 import com.example.divemagement.R
 
@@ -40,8 +37,6 @@ class ClientesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClientesBinding
     private lateinit var inmersiones: MutableList<ListaInmersiones>
     private lateinit var recyclerView: RecyclerView
-
-
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -80,11 +75,9 @@ class ClientesActivity : AppCompatActivity() {
 
         //Metodo que configura el toolbar
         configuracionToolBar()
-
-
     }
     fun abrirReservaInmersion(inmersion: ListaInmersiones) {
-        val intent = Intent(this, ReservaInmersion::class.java)
+        val intent = Intent(this, RegistroInmersion::class.java)
         intent.putExtra("inmersion_id", inmersion.id)
         startActivity(intent)
     }

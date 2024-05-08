@@ -2,9 +2,11 @@ package com.example.divemagement.Clientes
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.divemagement.DB.miInmersionApp
 import com.example.divemagement.adapter.clientesAdapter
 
@@ -20,8 +22,12 @@ class ActivityPerfilCliente : AppCompatActivity() {
     lateinit var adapter: clientesAdapter
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        // Handle the returned Uri
+        binding.imageButton.setImageURI(uri)
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilClienteBinding.inflate(layoutInflater)
@@ -63,6 +69,10 @@ class ActivityPerfilCliente : AppCompatActivity() {
                 }
                 .setNegativeButton("No", null)
                 .show()
+        }
+
+        binding.imageButton.setOnClickListener {
+            getContent.launch("image/*")
         }
 
         binding.exitButton.setOnClickListener {
