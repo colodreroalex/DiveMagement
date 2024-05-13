@@ -6,18 +6,24 @@
 
     <item
         android:id="@+id/añadir"
-        android:title="Añadir inmersión"
+        android:title="@string/añadir"
         android:icon="@drawable/anadir_icon"/>
     <item
         android:id="@+id/eliminar"
-        android:title="Eliminar inmersión"
-        android:icon="@drawable/eliminar_icon"/>
+        android:title="@string/eliminar"
+        android:icon="@drawable/eliminar_icon"
+        />
+
     <item
         android:id="@+id/actualizar"
-        android:title="Actualizar inmersión"
+        android:title="@string/actualizar"
         android:icon="@drawable/update_icon"/>
     <item
+        android:id="@+id/verClientes"
+        android:title="Show all clients"
+        android:icon="@drawable/icon_buscar"/>
+    <item
         android:id="@+id/id_salir"
-        android:title="Salir"
+        android:title="Log out"
         android:icon="@drawable/icon_cerrarsesion"/>
 </menu>

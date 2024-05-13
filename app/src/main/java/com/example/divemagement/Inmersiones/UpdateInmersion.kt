@@ -34,7 +34,7 @@ class UpdateInmersion : AppCompatActivity() {
                 val nuevaVisibilidad = binding.editTextVisibilidad.text.toString()
                 updateInmersion(nuevaProf, nuevaTemp, nuevaVisibilidad)
             } else {
-                Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "No field can be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -45,9 +45,9 @@ class UpdateInmersion : AppCompatActivity() {
 
     private fun updateInmersion(nuevaProf: Float, nuevaTemp: Float, nuevaVisibilidad: String ) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Confirmar actualización")
-        builder.setMessage("¿Estás seguro de que quieres actualizar la inmersión?")
-        builder.setPositiveButton("Sí") { _, _ ->
+        builder.setTitle("Confirm update")
+        builder.setMessage("Are you sure you want to upgrade the dive?")
+        builder.setPositiveButton("Yes") { _, _ ->
             CoroutineScope(Dispatchers.IO).launch {
                 val inmersiones =
                     miInmersionApp.database.inmersionesDAO().buscarInmersionPorNombre(binding.editTextNombreInmersion.text.toString())
@@ -61,7 +61,7 @@ class UpdateInmersion : AppCompatActivity() {
                         clearTextos()
                         Toast.makeText(
                             this@UpdateInmersion,
-                            "Inmersión actualizada correctamente",
+                            "Dive updated successfully",
                             Toast.LENGTH_SHORT
                         ).show()
                         actualizarRecyclerView()
@@ -72,7 +72,7 @@ class UpdateInmersion : AppCompatActivity() {
                     runOnUiThread {
                         Toast.makeText(
                             this@UpdateInmersion,
-                            "Esta inmersión no existe en la base de datos",
+                            "This dive does not exist in the database",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/cardViewImage"
-            android:text="Nombre de la Inmersión"
+            android:text="Dive Name"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -43,7 +43,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/cardViewImage"
-            android:text="Profundidad:"
+            android:text="Depth:"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/cardViewImage"
-            android:text="Temperatura:"
+            android:text="Temperature:"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

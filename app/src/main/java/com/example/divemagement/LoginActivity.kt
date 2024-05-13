@@ -107,11 +107,11 @@ class LoginActivity : ActivityWithMenus() {
                     }
                 } else {
                     // Manejo de error en caso de que la autenticación falle.
-                    Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Incorrect email or password", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fill in all the fields", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -121,7 +121,4 @@ class LoginActivity : ActivityWithMenus() {
         email.text.clear()
         tbPasswordLogin.text.clear()
     }
-
-
-
 }

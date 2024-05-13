@@ -29,7 +29,6 @@ class Anadir_inmersion : AppCompatActivity() {
     private lateinit var resultado: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        title = "Añadir Inmersion"
         super.onCreate(savedInstanceState)
         binding = ActivityAnadirInmersionBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -73,8 +72,8 @@ class Anadir_inmersion : AppCompatActivity() {
         if (!binding.editTextNombre.text.isNullOrEmpty() && !binding.editTextProfundidad.text.isNullOrEmpty() && !binding.editTextFecha.text.isNullOrEmpty() && !binding.editTextHora.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextTemperatura.text.isNullOrEmpty() && !binding.editTextVisibilidad.text.isNullOrEmpty() && !binding.editTextLugar.text.isNullOrEmpty() && !binding.editTextDescripcion.text.isNullOrEmpty()) {
             AlertDialog.Builder(this)
                 .setTitle("Confirmación")
-                .setMessage("¿Estás seguro de que quieres insertar esta inmersión?")
-                .setPositiveButton("Sí") { _, _ ->
+                .setMessage("Are you sure you want to insert this dive?")
+                .setPositiveButton("Yes") { _, _ ->
                     CoroutineScope(Dispatchers.IO).launch {
                         val inmersion = miInmersionApp.database.inmersionesDAO()
                             .buscarInmersionPorNombre(binding.editTextNombre.text!!.toString())
@@ -96,7 +95,7 @@ class Anadir_inmersion : AppCompatActivity() {
                                 limpiarCampos()
                                 Toast.makeText(
                                     this@Anadir_inmersion,
-                                    "Inmersion insertada",
+                                    "Inserted immersion",
                                     Toast.LENGTH_SHORT
                                 ).show()
                                 actualizarRecyclerView()
@@ -107,7 +106,7 @@ class Anadir_inmersion : AppCompatActivity() {
                             runOnUiThread {
                                 Toast.makeText(
                                     this@Anadir_inmersion,
-                                    "Esta inmersion ya está en la base de datos",
+                                    "This dive is already in the database",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -117,7 +116,7 @@ class Anadir_inmersion : AppCompatActivity() {
                 .setNegativeButton("No", null)
                 .show()
         } else {
-            Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "No field can be empty", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -171,11 +170,11 @@ class Anadir_inmersion : AppCompatActivity() {
 
     private fun checkProfundidad(profundidad: Float): Boolean{
         if(profundidad < 1){
-            Toast.makeText(this, "La profundidad no puede ser menor a 0 metros", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The depth cannot be less than 0 meters", Toast.LENGTH_SHORT).show()
             return false
         }
         if(profundidad > 40){
-            Toast.makeText(this, "La profundidad no puede ser mayor a 40 metros", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The depth cannot be greater than 40 meters", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
@@ -183,11 +182,11 @@ class Anadir_inmersion : AppCompatActivity() {
 
     private fun checkTemperatura(temperatura: Float): Boolean{
         if(temperatura < 0){
-            Toast.makeText(this, "La temperatura no puede ser menor a 0 grados", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The temperature cannot be less than 0 degrees", Toast.LENGTH_SHORT).show()
             return false
         }
         if(temperatura > 35){
-            Toast.makeText(this, "La temperatura no puede ser mayor a 35 grados", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "The temperature cannot be higher than 35 degrees", Toast.LENGTH_SHORT).show()
             return false
         }
         return true

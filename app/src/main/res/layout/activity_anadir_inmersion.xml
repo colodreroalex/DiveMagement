@@ -28,7 +28,7 @@
                 android:id="@+id/editTextNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
+                android:hint="Name"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 />
@@ -52,7 +52,7 @@
                 android:id="@+id/editTextProfundidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Profundidad"
+                android:hint="Deepness"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
@@ -76,7 +76,7 @@
                 android:id="@+id/editTextFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha"
+                android:hint="Date"
                 android:inputType="date"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
@@ -100,7 +100,7 @@
                 android:id="@+id/editTextHora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hora"
+                android:hint="Time"
                 android:inputType="time"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
@@ -124,7 +124,7 @@
                 android:id="@+id/editTextTemperatura"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Temperatura"
+                android:hint="Temperature"
                 android:inputType="numberDecimal"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
@@ -148,7 +148,7 @@
                 android:id="@+id/editTextVisibilidad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Visibilidad"
+                android:hint="Visibility"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -172,7 +172,7 @@
                 android:id="@+id/editTextLugar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Lugar"
+                android:hint="Place"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -195,7 +195,7 @@
                 android:id="@+id/editTextDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Descripción"
+                android:hint="Description"
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -215,7 +215,7 @@
             android:id="@+id/buttonGuardar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="Save Inmersion"
             app:layout_constraintTop_toBottomOf="@id/imagenButton"
             android:fontFamily="@font/alegreya_sc_italic"
             app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +228,7 @@
             android:id="@+id/salir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Salir"
+            android:text="Exit"
             android:fontFamily="@font/alegreya_sc_italic"
             app:layout_constraintTop_toBottomOf="@id/buttonGuardar"
             app:layout_constraintStart_toStartOf="parent"

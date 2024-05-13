@@ -34,7 +34,6 @@ class InmersionesActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        title = "Lista de Inmersiones"
         super.onCreate(savedInstanceState)
         binding = ActivityInmersionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -120,6 +119,9 @@ class InmersionesActivity : AppCompatActivity() {
                 }
                 R.id.actualizar -> {
                     startActivity(Intent(this, UpdateInmersion::class.java))
+                }
+                R.id.verClientes -> {
+                    startActivity(Intent(this, VerClientes::class.java))
                 }
                 R.id.id_salir -> {
                     startActivity(Intent(this, LoginActivity::class.java))

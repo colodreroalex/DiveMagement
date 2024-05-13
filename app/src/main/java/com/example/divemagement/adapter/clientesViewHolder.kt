@@ -15,9 +15,17 @@ class clientesViewHolder(view: View): RecyclerView.ViewHolder(view) {
         binding.nombreCliente.text = clienteModel.username
         binding.clientetlf.text = clienteModel.telefono
         binding.clienteEmail.text= clienteModel.email
-
-
     }
+
+    //Fun Bind para eliminar cliente al pulsar
+    /*fun bind(cliente: ListaClientes, deleteCliente: (ListaClientes) -> Unit){
+        binding.nombreCliente.text = cliente.username
+        binding.clientetlf.text = cliente.telefono
+        binding.clienteEmail.text= cliente.email
+
+        itemView.setOnClickListener{deleteCliente(cliente)}
+
+    }*/
 
 
 }

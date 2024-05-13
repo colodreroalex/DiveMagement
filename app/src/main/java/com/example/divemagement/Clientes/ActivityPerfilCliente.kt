@@ -35,9 +35,9 @@ class ActivityPerfilCliente : AppCompatActivity() {
 
         //PopUp informando al Usuario que en este apartado podrá modificar sus datos
         AlertDialog.Builder(this)
-            .setTitle("Actualizar datos")
-            .setMessage("Aquí podrás modificar tu nombre y teléfono.")
-            .setPositiveButton("Entendido", null)
+            .setTitle("Update data")
+            .setMessage("Here you can modify your name and telephone number.")
+            .setPositiveButton("Ok", null)
             .show()
 
         // Intenta obtener el email del Intent, si no existe, usa SharedPreferences
@@ -52,9 +52,9 @@ class ActivityPerfilCliente : AppCompatActivity() {
         //Al pulsar en el boton se deben actualizar los datos del usuario
         binding.updateButton.setOnClickListener {
             AlertDialog.Builder(this)
-                .setTitle("Actualizar datos")
-                .setMessage("¿Estás seguro de que quieres actualizar los datos?")
-                .setPositiveButton("Sí") { _, _ ->
+                .setTitle("Update data")
+                .setMessage("Are you sure you want to update the data?")
+                .setPositiveButton("Yes") { _, _ ->
                     if(binding.username.toString().isNotEmpty() && binding.phone.text.toString().isNotEmpty()){
                         //Actualizar datos de ese cliente en la bbdd
                         val nombre = binding.username.text.toString()
@@ -64,7 +64,7 @@ class ActivityPerfilCliente : AppCompatActivity() {
 
                     } else {
                         //Mostrar mensaje de error
-                        Toast.makeText(this, "Ningun campo puede estar vacío", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "No field can be empty", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .setNegativeButton("No", null)
@@ -100,7 +100,7 @@ class ActivityPerfilCliente : AppCompatActivity() {
             //Mostrar mensaje de éxito
             runOnUiThread {
                 clearTextos()
-                Toast.makeText(this@ActivityPerfilCliente, "Cliente actualizado correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@ActivityPerfilCliente, "Successfully updated client", Toast.LENGTH_SHORT).show()
                 actualizarRecyclerView()
                 adapter.notifyDataSetChanged()
                 volverClientesActivity()

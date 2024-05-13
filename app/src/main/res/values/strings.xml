@@ -1,14 +1,15 @@
 <resources>
-    <string name="app_name">DiveMagement</string>
-    <string name="titulo_barra">LISTADO DE INMERSIONES</string>
-    <string name="titulo_barra2">PANEL DE ADMINISTRADOR</string>
-    <string name="añadir">Añadir inmersión</string>
-    <string name="eliminar">Eliminar inmersión</string>
-    <string name="actualizar">Actualizar inmersión</string>
+    <string name="app_name">Blue Whale</string>
+    <string name="titulo_barra">DIVE LIST</string>
+    <string name="titulo_barra2">ADMIN PANEL</string>
+    <string name="añadir">Add inmersion</string>
+    <string name="eliminar">Delete inmersion</string>
+    <string name="actualizar">Update inmersion</string>
     <string name="id_salir">Salir</string>
-    <string name="perfil">Mi perfil</string>
-    <string name="historial">Ver historial</string>
-    <string name="cierraSesion">Cerrar Sesion</string>
+    <string name="perfil">My profile</string>
+    <string name="historial">View dive history</string>
+    <string name="cierraSesion">Log out Sesion</string>
+    <string name="atras">Back</string>
     <string name="registerUser">Register</string>
     <string name="loginUser">Login</string>
     <string name="open">Open Drawer</string>

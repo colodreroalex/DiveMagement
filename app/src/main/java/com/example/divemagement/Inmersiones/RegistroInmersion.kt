@@ -67,9 +67,9 @@ class RegistroInmersion : AppCompatActivity() {
     //Funcion para que al hacer click en el boton de reserva se pregunte al usuario si esta seguro de reservar la inmersion
     fun reservaInmersion(view: View) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Reservar inmersión")
-        builder.setMessage("¿Estás seguro de reservar esta inmersión?")
-        builder.setPositiveButton("Sí") { dialog, which ->
+        builder.setTitle("Dive log")
+        builder.setMessage("¿Are you sure you want to record this dive?")
+        builder.setPositiveButton("Yes") { dialog, which ->
             // Si el usuario pulsa en sí, se asigna la inmersión al cliente
             CoroutineScope(Dispatchers.IO).launch {
                 // Obtener el nombre del cliente y el ID del cliente.
@@ -92,16 +92,16 @@ class RegistroInmersion : AppCompatActivity() {
 
                     // Mostrar un mensaje de éxito.
                     withContext(Dispatchers.Main) {
-                        Toast.makeText(this@RegistroInmersion, "Inmersión reservada", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegistroInmersion, "Dive registered", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     // Si alguno no existe, mostrar un mensaje de error correspondiente.
                     withContext(Dispatchers.Main) {
                         if (!clienteExiste) {
-                            Toast.makeText(this@RegistroInmersion, "Error: Cliente no encontrado", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistroInmersion, "Error: Client not found", Toast.LENGTH_SHORT).show()
                         }
                         if (!inmersionExiste) {
-                            Toast.makeText(this@RegistroInmersion, "Error: Inmersión no encontrada", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@RegistroInmersion, "Error: Dive not found", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

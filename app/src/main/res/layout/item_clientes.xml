@@ -11,6 +11,7 @@
     app:cardElevation="8dp">
 
     <RelativeLayout
+        android:id="@+id/elemento_cliente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
@@ -22,8 +23,7 @@
             android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:src="@color/white"
-             />
+            android:src="@color/white" />
 
         <!-- TextView para el nombre del cliente -->
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/clientImageView"
-            android:text="Nombre del Cliente"
+            android:text="Customer name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/white"
             android:textStyle="bold" />
@@ -45,7 +45,7 @@
             android:layout_below="@+id/nombreCliente"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/clientImageView"
-            android:text="Teléfono: "
+            android:text="Tlf: "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white" />
 
@@ -57,8 +57,11 @@
             android:layout_below="@+id/clientetlf"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/clientImageView"
-            android:text="Email: "
+            android:text="E-mail: "
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white" />
+
+
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

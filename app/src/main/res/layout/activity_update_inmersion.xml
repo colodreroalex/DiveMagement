@@ -26,7 +26,7 @@
             android:id="@+id/editTextNombreInmersion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de la inmersión a actualizar"
+            android:hint="Name of the dive to update"
             android:inputType="text"
             android:textColor="@color/white"
             android:padding="12dp"
@@ -51,7 +51,7 @@
             android:id="@+id/editTextProfundidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nueva profundidad"
+            android:hint="New depth"
             android:inputType="numberDecimal"
             android:textColor="@color/white"
             android:padding="12dp"
@@ -76,7 +76,7 @@
             android:id="@+id/editTextTemperatura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nueva temperatura"
+            android:hint="New temperature"
             android:inputType="numberDecimal"
             android:textColor="@color/white"
             android:padding="12dp"
@@ -100,16 +100,12 @@
             android:id="@+id/editTextVisibilidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nueva visibilidad"
+            android:hint="New visibility"
             android:inputType="text"
             android:textColor="@color/white"
             android:padding="12dp"
             android:textStyle="bold|italic"/>
     </com.google.android.material.textfield.TextInputLayout>
-
-    <!-- Botón para actualizar la inmersión -->
-
-    <!-- Botón "Atrás" -->
 
     <Button
         android:id="@+id/botonActualizarInmersion"
@@ -118,7 +114,7 @@
         android:layout_marginTop="108dp"
         android:background="@color/lightBlue"
         android:fontFamily="@font/alegreya_sc_italic"
-        android:text="Actualizar Inmersión"
+        android:text="Update Inmersión"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="italic|bold"
@@ -134,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@id/botonActualizarInmersion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Atrás"
+        android:text="@string/atras"
         android:fontFamily="@font/alegreya_sc_italic"
         android:textColor="@color/white"
         android:backgroundTint="@color/purple"

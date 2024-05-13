@@ -11,6 +11,10 @@
             android:title="@string/historial"
             android:icon="@drawable/icon_historial"/>
 
+        <item android:id="@+id/web"
+            android:title="Open Website"
+            android:icon="@drawable/web_icon"/>
+
         <item android:id="@+id/cierraSesion"
             android:title="@string/cierraSesion"
             android:icon="@drawable/icon_cerrarsesion"/>

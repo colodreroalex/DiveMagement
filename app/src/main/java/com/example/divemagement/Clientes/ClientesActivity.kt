@@ -109,6 +109,9 @@ class ClientesActivity : AppCompatActivity() {
                 R.id.historial -> {
                     startActivity(Intent(this, ActivityHistorialClientes::class.java))
                 }
+                R.id.web -> {
+                    startActivity(Intent(this, Web::class.java))
+                }
                 R.id.cierraSesion -> {
                     startActivity(Intent(this, LoginActivity::class.java))
                 }

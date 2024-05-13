@@ -27,7 +27,6 @@ class ActivityHistorialClientes : AppCompatActivity() {
     lateinit var clientes: MutableList<ListaClientes>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        title = "Historial de Clientes"
         super.onCreate(savedInstanceState)
         binding = ActivityHistorialClientesBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -38,11 +37,6 @@ class ActivityHistorialClientes : AppCompatActivity() {
             ?: "No definido"
 
         adapter = inmersionesAdapter(mutableListOf(), false)
-
-        binding.botonFlotante.setOnClickListener {
-            val intent = Intent(this, ClientesActivity::class.java)
-            startActivity(intent)
-        }
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -73,6 +67,11 @@ class ActivityHistorialClientes : AppCompatActivity() {
                 recyclerView.layoutManager = LinearLayoutManager(this@ActivityHistorialClientes)
                 recyclerView.adapter = adapter
             }
+        }
+
+        binding.botonFlotante.setOnClickListener {
+            val intent = Intent(this, ClientesActivity::class.java)
+            startActivity(intent)
         }
     }
 

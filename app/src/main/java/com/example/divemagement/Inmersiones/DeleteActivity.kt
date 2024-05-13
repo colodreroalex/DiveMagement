@@ -34,7 +34,7 @@ class DeleteActivity : AppCompatActivity() {
                 borrarInmersion(nombreInmersion)
 
             } else {
-                Toast.makeText(this, "El campo no puede estar vacio", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "The field cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -51,8 +51,8 @@ class DeleteActivity : AppCompatActivity() {
 
     fun borrarInmersion(nombre: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Confirmar eliminación")
-        builder.setMessage("¿Estás seguro de que quieres eliminar la inmersión?")
+        builder.setTitle("Confirm deletion")
+        builder.setMessage("Are you sure you want to delete this dive?")
         builder.setPositiveButton("Sí") { _, _ ->
             CoroutineScope(Dispatchers.IO).launch {
                 val inmersion_borrar =
@@ -65,7 +65,7 @@ class DeleteActivity : AppCompatActivity() {
                         clearTextos()
                         Toast.makeText(
                             this@DeleteActivity,
-                            "Inmersión eliminada correctamente",
+                            "Inmersión correctly deleted",
                             Toast.LENGTH_SHORT
                         ).show()
                         actualizarRecyclerView()
@@ -76,7 +76,7 @@ class DeleteActivity : AppCompatActivity() {
                     runOnUiThread {
                         Toast.makeText(
                             this@DeleteActivity,
-                            "Inmersión no encontrada",
+                            "Inmersion not found",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

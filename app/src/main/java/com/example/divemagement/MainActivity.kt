@@ -28,7 +28,6 @@ class MainActivity : ActivityWithMenus() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        title = "Sign Up"
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -56,7 +55,7 @@ class MainActivity : ActivityWithMenus() {
             if (username.isNotEmpty() && password.isNotEmpty() && tlf.isNotEmpty() && correo.isNotEmpty()) {
                 mostrarConfirmacionDialog(username, password, tlf, correo)
             } else {
-                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Fill in all the fields", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -71,17 +70,16 @@ class MainActivity : ActivityWithMenus() {
 
     private fun mostrarConfirmacionDialog(username: String, password: String, tlf: String, correo: String) {
         val alerta = AlertDialog.Builder(this)
-        alerta.setTitle("Confirmación")
-        alerta.setMessage("¿Estás seguro de registrar al cliente?")
+        alerta.setTitle("Confirmation")
+        alerta.setMessage("Are you sure to register the client?")
 
-        alerta.setPositiveButton("Sí") { dialog, which ->
+        alerta.setPositiveButton("Yes") { dialog, which ->
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                 binding.email.text.toString(),
                 binding.password.text.toString()
             )
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        // Insertar al cliente en la base de datos SQLite
                         CoroutineScope(Dispatchers.IO).launch {
                             val newClient = ListaClientes(
                                 username = username,
@@ -89,13 +87,15 @@ class MainActivity : ActivityWithMenus() {
                                 telefono = tlf,
                                 email = correo
                             )
-                            miInmersionApp.database.clientesDAO().insertCliente(newClient)
+                            val insertResult = miInmersionApp.database.clientesDAO().insertCliente(newClient)
+                            Log.d("DB_INSERT", "Insert result: $insertResult")
 
-                            // Query the database to check if the user was inserted correctly
                             val insertedClient = miInmersionApp.database.clientesDAO().buscarClientePorEmail(correo)
+                            Log.d("DB_QUERY", "Queried client: $insertedClient")
+
                             if (insertedClient != null && insertedClient.isNotEmpty()) {
                                 withContext(Dispatchers.Main) {
-                                    Toast.makeText(this@MainActivity, "User inserted successfully", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@MainActivity, "The user registered successfully", Toast.LENGTH_SHORT).show()
                                 }
                             } else {
                                 withContext(Dispatchers.Main) {
@@ -104,11 +104,10 @@ class MainActivity : ActivityWithMenus() {
                             }
                         }
                     } else {
-                        Toast.makeText(this, "Error al crear el usuario", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "Error creating user", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
-            Toast.makeText(this, "Cliente registrado", Toast.LENGTH_SHORT).show()
 
             // Limpiar los campos
             limpiarCampos()
@@ -120,7 +119,7 @@ class MainActivity : ActivityWithMenus() {
 
         alerta.setNegativeButton("No") { dialog, which ->
             // No hacer nada si el usuario selecciona "No"
-            Toast.makeText(this, "Registro cancelado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Registration canceled", Toast.LENGTH_SHORT).show()
         }
 
         val dialog: AlertDialog = alerta.create()
